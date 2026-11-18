@@ -1,19 +1,15 @@
 <?php
 /**
  * API: Routes
- * 
+ *
  * GET  /api/routes.php                                    — List all routes
- * GET  /api/routes.php?origin=Jaro&destination=Molo       — Search routes
+ * GET  /api/routes.php?origin=Jaro&destination=Molo       — Search
  * GET  /api/routes.php?type=jeepney                       — Filter by type
- * GET  /api/routes.php?q=airport                          — Full-text search
- * 
- * Front-end integration points:
- *   #route-search-form      — Search form
- *   #route-search-results   — Results container
- *   .route-result-card      — Each result card
- *   name="origin"           — Origin field
- *   name="destination"      — Destination field
- *   name="transport_type"   — Type filter
+ * GET  /api/routes.php?q=airport                          — General search
+ *
+ * Front-end targets:
+ *   #route-search-form, #route-search-results, .route-result-card
+ *   name="origin", name="destination", name="transport_type"
  */
 
 require_once __DIR__ . '/bootstrap.php';
@@ -22,75 +18,37 @@ if (getMethod() !== 'GET') {
     Response::error('Method not allowed.', 405);
 }
 
-$db = Database::getInstance()->getConnection();
-
-$where  = ['r.is_active = 1'];
-$params = [];
+$store   = new JsonStore('routes');
+$results = $store->all();
 
 // ── Filter by transport type ─────────────────────────────────
 if (!empty($_GET['type']) && $_GET['type'] !== 'all') {
-    $where[]  = 'tt.slug = :type';
-    $params[':type'] = $_GET['type'];
+    $type = $_GET['type'];
+    $results = array_values(array_filter($results, fn($r) => $r['transport_type'] === $type));
 }
 
-// ── Search by origin ─────────────────────────────────────────
+// ── Filter by origin ─────────────────────────────────────────
 if (!empty($_GET['origin'])) {
-    $where[]  = 'r.origin LIKE :origin';
-    $params[':origin'] = '%' . $_GET['origin'] . '%';
+    $origin = mb_strtolower($_GET['origin']);
+    $results = array_values(array_filter($results, fn($r) =>
+        str_contains(mb_strtolower($r['origin']), $origin)
+    ));
 }
 
-// ── Search by destination ────────────────────────────────────
+// ── Filter by destination ────────────────────────────────────
 if (!empty($_GET['destination'])) {
-    $where[]  = 'r.destination LIKE :destination';
-    $params[':destination'] = '%' . $_GET['destination'] . '%';
+    $dest = mb_strtolower($_GET['destination']);
+    $results = array_values(array_filter($results, fn($r) =>
+        str_contains(mb_strtolower($r['destination']), $dest)
+    ));
 }
 
-// ── Full-text search (hero search bar, general query) ────────
+// ── General search query ─────────────────────────────────────
 if (!empty($_GET['q'])) {
-    $where[]  = '(r.route_name LIKE :like_q OR r.origin LIKE :like_q2 OR r.destination LIKE :like_q3 OR tt.label LIKE :like_q4)';
-    $likeQ = '%' . $_GET['q'] . '%';
-    $params[':like_q']  = $likeQ;
-    $params[':like_q2'] = $likeQ;
-    $params[':like_q3'] = $likeQ;
-    $params[':like_q4'] = $likeQ;
+    $results = $store->search(
+        $_GET['q'],
+        ['route_name', 'origin', 'destination', 'transport_type', 'transport_label']
+    );
 }
 
-$whereClause = implode(' AND ', $where);
-
-$sql = "
-    SELECT
-        r.id                          AS id,
-        r.route_code                  AS route_id,
-        tt.slug                       AS transport_type,
-        tt.label                      AS transport_label,
-        tt.icon                       AS transport_icon,
-        r.route_name                  AS route_name,
-        r.origin                      AS origin,
-        r.destination                 AS destination,
-        r.estimated_fare              AS fare,
-        r.estimated_duration_minutes  AS duration_minutes,
-        (
-            SELECT wt.estimated_wait_minutes
-            FROM waiting_times wt
-            WHERE wt.route_id = r.id
-            ORDER BY wt.recorded_at DESC
-            LIMIT 1
-        ) AS current_wait_minutes,
-        (
-            SELECT wt.status
-            FROM waiting_times wt
-            WHERE wt.route_id = r.id
-            ORDER BY wt.recorded_at DESC
-            LIMIT 1
-        ) AS current_status
-    FROM routes r
-    JOIN transport_types tt ON r.transport_type_id = tt.id
-    WHERE {$whereClause}
-    ORDER BY r.route_name ASC
-";
-
-$stmt = $db->prepare($sql);
-$stmt->execute($params);
-$rows = $stmt->fetchAll();
-
-Response::success($rows, 'Routes retrieved.', 200, ['count' => count($rows)]);
+Response::success($results, 'Routes retrieved.', 200, ['count' => count($results)]);

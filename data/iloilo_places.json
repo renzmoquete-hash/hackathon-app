@@ -1,0 +1,1260 @@
+[
+    {
+        "id": "place-001",
+        "name": "Jaro Plaza & Cathedral",
+        "district": "Jaro",
+        "category": "plaza",
+        "address": "E. Lopez St. cor. Commission Civil St., Jaro, Iloilo City",
+        "coordinates": [
+            10.7289,
+            122.5583
+        ],
+        "transport_types": [
+            "jeepney",
+            "bus",
+            "taxi",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Route 3 Ungka-City Proper",
+            "Route 10 Buntatala",
+            "Route 14 Hibao-an-Jaro CPU",
+            "Leganes-Iloilo",
+            "Dumangas-Iloilo",
+            "Jaro-CPU Tricycle TODA"
+        ],
+        "waiting_time_estimate": 18,
+        "status": "delayed",
+        "is_terminal": false,
+        "peak_hours": "7:00 AM - 9:00 AM, 4:30 PM - 7:30 PM",
+        "notes": "Major transfer point for north-bound commuters. High passenger volume during afternoon rush hour."
+    },
+    {
+        "id": "place-002",
+        "name": "Central Philippine University (CPU) Gate 1 & Halfway",
+        "district": "Jaro",
+        "category": "university",
+        "address": "Lopez Jaena St., Jaro, Iloilo City",
+        "coordinates": [
+            10.7303,
+            122.5542
+        ],
+        "transport_types": [
+            "jeepney",
+            "taxi",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Route 3 Ungka-City Proper via CPU",
+            "Route 14 Hibao-an-CPU",
+            "Route 21 Tagbak-Festive Walk",
+            "CPU-Dungon Tricycle"
+        ],
+        "waiting_time_estimate": 12,
+        "status": "moderate",
+        "is_terminal": false,
+        "peak_hours": "11:30 AM - 1:30 PM, 5:00 PM - 7:00 PM",
+        "notes": "Heavy student commuter crowd. Jeepneys often arrive full from Ungka."
+    },
+    {
+        "id": "place-003",
+        "name": "Tagbak Transport Terminal",
+        "district": "Jaro",
+        "category": "terminal",
+        "address": "Iloilo East Coast-Capiz Rd., Tagbak, Jaro, Iloilo City",
+        "coordinates": [
+            10.7589,
+            122.5801
+        ],
+        "transport_types": [
+            "bus",
+            "jeepney",
+            "uv",
+            "taxi",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Route 10 Buntatala-City Proper",
+            "Route 11 Tagbak-City Hall",
+            "Route 21 Tagbak-Festive Walk",
+            "Ceres Liner Northbound",
+            "Passi City Bus",
+            "Estancia / Sara / Carles Bus",
+            "Kalibo / Roxas UV Express"
+        ],
+        "waiting_time_estimate": 25,
+        "status": "delayed",
+        "is_terminal": true,
+        "peak_hours": "5:30 AM - 8:00 AM, 3:30 PM - 7:00 PM",
+        "notes": "Main hub for northern Iloilo and Panay provincial travel. Long queues for city jeepneys in the morning and provincial buses on weekends."
+    },
+    {
+        "id": "place-004",
+        "name": "Ungka Transport Terminal",
+        "district": "Jaro / Pavia Border",
+        "category": "terminal",
+        "address": "Ungka II, near Ungka Flyover, Jaro, Iloilo City",
+        "coordinates": [
+            10.7495,
+            122.5447
+        ],
+        "transport_types": [
+            "jeepney",
+            "bus",
+            "taxi",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Route 3 Ungka-City Proper via CPU",
+            "Route 4 Ungka-City Proper via Diversion",
+            "Route 22 Ungka-Festive Walk",
+            "Pavia-Iloilo",
+            "Santa Barbara-Iloilo",
+            "Cabatuan-Iloilo",
+            "Janiuay-Iloilo"
+        ],
+        "waiting_time_estimate": 15,
+        "status": "moderate",
+        "is_terminal": true,
+        "peak_hours": "6:30 AM - 8:30 AM, 5:00 PM - 7:00 PM",
+        "notes": "Key staging terminal for central Iloilo towns commuters transferring to city modern jeepneys."
+    },
+    {
+        "id": "place-005",
+        "name": "SM City Iloilo Transport Terminal & Overpass",
+        "district": "Mandurriao",
+        "category": "mall",
+        "address": "Sen. Benigno Aquino Jr. Ave. (Diversion Rd.), Mandurriao, Iloilo City",
+        "coordinates": [
+            10.7138,
+            122.5516
+        ],
+        "transport_types": [
+            "jeepney",
+            "bus",
+            "taxi",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Route 4 Ungka-Diversion",
+            "Route 6 Lanit-SM City",
+            "Route 8 Parola-SM City",
+            "Route 21 Tagbak-Festive Walk",
+            "MetroExpress P2P Airport Bus",
+            "SM City-Leganes",
+            "SM City-Pavia"
+        ],
+        "waiting_time_estimate": 10,
+        "status": "normal",
+        "is_terminal": true,
+        "peak_hours": "12:00 PM - 2:00 PM, 6:00 PM - 8:30 PM",
+        "notes": "Bus and modern jeepney bays in Southpoint and Northpoint. Overpass loading zone has frequent taxi and PUV pickups."
+    },
+    {
+        "id": "place-006",
+        "name": "Festive Walk Transport Hub (Megaworld Iloilo Business Park)",
+        "district": "Mandurriao",
+        "category": "terminal",
+        "address": "Megaworld Blvd., Iloilo Business Park, Mandurriao, Iloilo City",
+        "coordinates": [
+            10.7157,
+            122.5443
+        ],
+        "transport_types": [
+            "jeepney",
+            "bus",
+            "taxi"
+        ],
+        "passing_routes": [
+            "Route 5 Festive Walk-City Proper",
+            "Route 14 Hibao-an-Festive Walk",
+            "Route 21 Tagbak-Festive Walk",
+            "Route 22 Ungka-Festive Walk",
+            "Route 23 Mohon-Festive Walk",
+            "Route 24 La Paz-Festive Walk",
+            "MetroExpress P2P Airport Bus"
+        ],
+        "waiting_time_estimate": 8,
+        "status": "normal",
+        "is_terminal": true,
+        "peak_hours": "7:30 AM - 9:00 AM, 5:30 PM - 8:00 PM",
+        "notes": "Modern air-conditioned transport terminal. Hub for BPO workers and airport express commuters."
+    },
+    {
+        "id": "place-007",
+        "name": "Molo Plaza & St. Anne Church",
+        "district": "Molo",
+        "category": "plaza",
+        "address": "San Pedro St. cor. MH Del Pilar St., Molo, Iloilo City",
+        "coordinates": [
+            10.6975,
+            122.5447
+        ],
+        "transport_types": [
+            "jeepney",
+            "taxi",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Route 2 Villa-City Proper",
+            "Route 7 Compania-City Proper",
+            "Route 9 Mohon-Lapuz",
+            "Route 15 Molo-Lapuz",
+            "Molo-Boulevard Tricycle TODA",
+            "Molo-Calumpang Tricycle"
+        ],
+        "waiting_time_estimate": 14,
+        "status": "moderate",
+        "is_terminal": false,
+        "peak_hours": "7:00 AM - 8:30 AM, 4:30 PM - 6:30 PM",
+        "notes": "Choke point along MH Del Pilar St. Loading zone near Molo Mansion and plaza corner."
+    },
+    {
+        "id": "place-008",
+        "name": "Mohon Transport Terminal",
+        "district": "Arevalo (Villa)",
+        "category": "terminal",
+        "address": "Mohon, Villa de Arevalo, Iloilo City",
+        "coordinates": [
+            10.6865,
+            122.5187
+        ],
+        "transport_types": [
+            "jeepney",
+            "bus",
+            "uv",
+            "taxi",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Route 2 Villa-City Proper",
+            "Route 9 Mohon-Lapuz",
+            "Route 23 Mohon-Festive Walk",
+            "Oton-Iloilo",
+            "Tigbauan-Iloilo",
+            "Guimbal-Iloilo",
+            "Miagao-Iloilo",
+            "San Joaquin-Iloilo",
+            "Antique Ceres Liner Buses",
+            "San Jose Antique UV Express"
+        ],
+        "waiting_time_estimate": 20,
+        "status": "delayed",
+        "is_terminal": true,
+        "peak_hours": "6:00 AM - 8:00 AM, 4:30 PM - 7:00 PM",
+        "notes": "Main gateway for southern Iloilo and Antique province. High passenger queues during Friday afternoon and Monday morning."
+    },
+    {
+        "id": "place-009",
+        "name": "Plaza Libertad & Iloilo City Hall",
+        "district": "City Proper",
+        "category": "plaza",
+        "address": "Plaza Libertad, De la Rama St. cor. JM Basa St., City Proper, Iloilo City",
+        "coordinates": [
+            10.6928,
+            122.5714
+        ],
+        "transport_types": [
+            "jeepney",
+            "taxi",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Route 1 Bo. Obrero",
+            "Route 2 Villa",
+            "Route 3 Ungka",
+            "Route 11 Tagbak-City Hall",
+            "Route 15 Molo-Lapuz via Plaza Libertad"
+        ],
+        "waiting_time_estimate": 15,
+        "status": "moderate",
+        "is_terminal": false,
+        "peak_hours": "8:00 AM - 9:00 AM, 4:30 PM - 6:00 PM",
+        "notes": "Government center hub. Heavy foot traffic from employees and court visitors."
+    },
+    {
+        "id": "place-010",
+        "name": "Calle Real & JM Basa Heritage District",
+        "district": "City Proper",
+        "category": "heritage",
+        "address": "JM Basa St., City Proper, Iloilo City",
+        "coordinates": [
+            10.6958,
+            122.5702
+        ],
+        "transport_types": [
+            "jeepney",
+            "taxi"
+        ],
+        "passing_routes": [
+            "Route 1 Bo. Obrero",
+            "Route 2 Villa",
+            "Route 3 Ungka",
+            "Route 5 Festive Walk",
+            "Route 7 Compania"
+        ],
+        "waiting_time_estimate": 16,
+        "status": "delayed",
+        "is_terminal": false,
+        "peak_hours": "8:00 AM - 10:00 AM, 4:00 PM - 7:00 PM",
+        "notes": "Historic downtown artery. Narrow road causes stop-and-go jeepney congestion."
+    },
+    {
+        "id": "place-011",
+        "name": "Iloilo Terminal Market ('Super')",
+        "district": "City Proper",
+        "category": "terminal",
+        "address": "Rizal St. cor. Iznart St., City Proper, Iloilo City",
+        "coordinates": [
+            10.6974,
+            122.5658
+        ],
+        "transport_types": [
+            "jeepney",
+            "taxi",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Route 1 Bo. Obrero",
+            "Route 2 Villa",
+            "Route 4 Ungka",
+            "Route 12 Mandurriao",
+            "Route 13 Hibao-an",
+            "First-town provincial jeepneys"
+        ],
+        "waiting_time_estimate": 22,
+        "status": "delayed",
+        "is_terminal": true,
+        "peak_hours": "5:00 AM - 8:30 AM, 3:30 PM - 6:30 PM",
+        "notes": "Central wet market hub. Massive commuter congregation from vendors, market shoppers, and inter-district travelers."
+    },
+    {
+        "id": "place-012",
+        "name": "University of San Agustin (USA) & General Luna",
+        "district": "City Proper",
+        "category": "university",
+        "address": "General Luna St., City Proper, Iloilo City",
+        "coordinates": [
+            10.6997,
+            122.5574
+        ],
+        "transport_types": [
+            "jeepney",
+            "taxi"
+        ],
+        "passing_routes": [
+            "Route 1 Bo. Obrero",
+            "Route 2 Villa",
+            "Route 3 Ungka",
+            "Route 4 Ungka",
+            "Route 5 Festive Walk",
+            "Route 9 Mohon",
+            "Route 12 Mandurriao"
+        ],
+        "waiting_time_estimate": 17,
+        "status": "delayed",
+        "is_terminal": false,
+        "peak_hours": "7:00 AM - 8:30 AM, 4:30 PM - 7:00 PM",
+        "notes": "One of the busiest student thoroughfares in Iloilo City. Long student lines along General Luna waiting for outbound jeepneys."
+    },
+    {
+        "id": "place-013",
+        "name": "La Paz Plaza & Public Market",
+        "district": "La Paz",
+        "category": "plaza",
+        "address": "Huervana St. cor. Luna St., La Paz, Iloilo City",
+        "coordinates": [
+            10.7098,
+            122.5694
+        ],
+        "transport_types": [
+            "jeepney",
+            "taxi",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Route 1 Bo. Obrero",
+            "Route 24 La Paz-Festive Walk",
+            "La Paz-ISAT-U Tricycle",
+            "La Paz-Caingin Tricycle",
+            "Coastal Jeepneys"
+        ],
+        "waiting_time_estimate": 11,
+        "status": "moderate",
+        "is_terminal": false,
+        "peak_hours": "6:30 AM - 8:00 AM, 5:00 PM - 7:00 PM",
+        "notes": "Famous birthplace of La Paz Batchoy. Busy market loading zone and tricycle hub connecting to coastal barangays."
+    },
+    {
+        "id": "place-014",
+        "name": "West Visayas State University (WVSU Main) & Medical Center",
+        "district": "La Paz",
+        "category": "university",
+        "address": "Luna St., La Paz, Iloilo City",
+        "coordinates": [
+            10.7147,
+            122.5638
+        ],
+        "transport_types": [
+            "jeepney",
+            "taxi",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Route 3 Ungka-City Proper",
+            "Route 24 La Paz-Festive Walk",
+            "WVSU-Jaro Tricycle"
+        ],
+        "waiting_time_estimate": 14,
+        "status": "moderate",
+        "is_terminal": false,
+        "peak_hours": "7:00 AM - 8:30 AM, 4:30 PM - 6:30 PM",
+        "notes": "Hospital staff, patients, medical students, and university crowds converge on Luna St."
+    },
+    {
+        "id": "place-015",
+        "name": "Iloilo Science and Technology University (ISAT-U)",
+        "district": "La Paz",
+        "category": "university",
+        "address": "Burgos St., La Paz, Iloilo City",
+        "coordinates": [
+            10.7077,
+            122.5735
+        ],
+        "transport_types": [
+            "jeepney",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Route 1 Bo. Obrero",
+            "Route 11 Tagbak-City Hall",
+            "ISAT-U-Lapuz Tricycle"
+        ],
+        "waiting_time_estimate": 13,
+        "status": "moderate",
+        "is_terminal": false,
+        "peak_hours": "7:30 AM - 9:00 AM, 5:00 PM - 6:30 PM",
+        "notes": "High concentration of engineering and vocational students heading to City Proper and Lapuz."
+    },
+    {
+        "id": "place-016",
+        "name": "Iloilo Fastcraft & Ferry Terminal (Lapuz)",
+        "district": "Lapuz",
+        "category": "port",
+        "address": "Progreso, Lapuz, Iloilo City",
+        "coordinates": [
+            10.7001,
+            122.5835
+        ],
+        "transport_types": [
+            "jeepney",
+            "taxi",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Route 1 Bo. Obrero-General Luna",
+            "Route 9 Mohon-Lapuz",
+            "Route 15 Molo-Lapuz",
+            "Lapuz Terminal Taxi Stand",
+            "Lapuz TODA Tricycle"
+        ],
+        "waiting_time_estimate": 20,
+        "status": "delayed",
+        "is_terminal": true,
+        "peak_hours": "6:00 AM - 8:00 AM, 3:00 PM - 6:00 PM",
+        "notes": "Terminal for OceanJet, SuperCat, FastCat to Bacolod. Surge in taxi and jeepney demand whenever a ship docks."
+    },
+    {
+        "id": "place-017",
+        "name": "Parola Wharf (Guimaras Ferry)",
+        "district": "City Proper",
+        "category": "port",
+        "address": "Muelle Loney St., Parola, City Proper, Iloilo City",
+        "coordinates": [
+            10.6978,
+            122.5794
+        ],
+        "transport_types": [
+            "jeepney",
+            "taxi",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Route 8 Parola-SM City",
+            "Parola-City Proper Jeepneys",
+            "Parola Ferry Tricycles"
+        ],
+        "waiting_time_estimate": 15,
+        "status": "moderate",
+        "is_terminal": true,
+        "peak_hours": "6:30 AM - 8:30 AM, 4:30 PM - 6:30 PM",
+        "notes": "Primary boat terminal for Guimaras island daily commuters, students, and mango traders."
+    },
+    {
+        "id": "place-018",
+        "name": "Western Visayas Medical Center (WVMC)",
+        "district": "Mandurriao",
+        "category": "hospital",
+        "address": "Q. Abeto St., Mandurriao, Iloilo City",
+        "coordinates": [
+            10.7188,
+            122.5318
+        ],
+        "transport_types": [
+            "jeepney",
+            "taxi",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Route 12 Mandurriao-City Proper",
+            "Route 13 Hibao-an-City Proper",
+            "Mandurriao Plaza Tricycle"
+        ],
+        "waiting_time_estimate": 16,
+        "status": "delayed",
+        "is_terminal": false,
+        "peak_hours": "7:00 AM - 9:00 AM, 3:00 PM - 6:00 PM",
+        "notes": "Major government regional tertiary hospital. Frequent commuter requests for patients and healthcare workers."
+    },
+    {
+        "id": "place-019",
+        "name": "Hibao-an Transport Terminal",
+        "district": "Mandurriao",
+        "category": "terminal",
+        "address": "Hibao-an Norte, Mandurriao, Iloilo City",
+        "coordinates": [
+            10.7292,
+            122.5152
+        ],
+        "transport_types": [
+            "jeepney",
+            "taxi",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Route 13 Hibao-an-City Proper",
+            "Route 14 Hibao-an-Jaro CPU",
+            "San Miguel-Iloilo",
+            "Alimodian-Iloilo",
+            "Leon-Iloilo"
+        ],
+        "waiting_time_estimate": 22,
+        "status": "delayed",
+        "is_terminal": true,
+        "peak_hours": "6:00 AM - 8:00 AM, 5:00 PM - 7:00 PM",
+        "notes": "West-corridor terminal serving passengers from San Miguel, Alimodian, and Leon agricultural towns."
+    },
+    {
+        "id": "place-020",
+        "name": "Atria Park District & QualiMed Hospital",
+        "district": "Mandurriao",
+        "category": "mall",
+        "address": "Donato Pison Ave., San Rafael, Mandurriao, Iloilo City",
+        "coordinates": [
+            10.7095,
+            122.5482
+        ],
+        "transport_types": [
+            "jeepney",
+            "taxi"
+        ],
+        "passing_routes": [
+            "Route 4 Ungka-Diversion",
+            "Route 21 Tagbak-Festive Walk",
+            "Route 23 Mohon-Festive Walk",
+            "Atria Taxi Stand"
+        ],
+        "waiting_time_estimate": 9,
+        "status": "normal",
+        "is_terminal": false,
+        "peak_hours": "11:30 AM - 1:30 PM, 6:00 PM - 8:00 PM",
+        "notes": "Ayala mixed-use development near Ateneo de Iloilo with convenient taxi and modern jeepney access."
+    },
+    {
+        "id": "place-021",
+        "name": "Iloilo Doctors' Hospital & College",
+        "district": "Molo",
+        "category": "hospital",
+        "address": "West Timawa, Molo, Iloilo City",
+        "coordinates": [
+            10.7018,
+            122.5488
+        ],
+        "transport_types": [
+            "jeepney",
+            "taxi",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Route 7 Compania-City Proper",
+            "Route 8 Parola-SM City",
+            "Timawa-Infante Tricycle"
+        ],
+        "waiting_time_estimate": 11,
+        "status": "moderate",
+        "is_terminal": false,
+        "peak_hours": "7:00 AM - 8:30 AM, 4:00 PM - 6:00 PM",
+        "notes": "College of Medicine and Nursing students frequently commute toward Infante and General Luna."
+    },
+    {
+        "id": "place-022",
+        "name": "The Medical City Iloilo",
+        "district": "Molo",
+        "category": "hospital",
+        "address": "Tap-oc, Locsin St., Molo, Iloilo City",
+        "coordinates": [
+            10.6942,
+            122.5408
+        ],
+        "transport_types": [
+            "jeepney",
+            "taxi",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Route 2 Villa-City Proper",
+            "Route 15 Molo-Lapuz",
+            "Tap-oc Tricycle TODA"
+        ],
+        "waiting_time_estimate": 10,
+        "status": "normal",
+        "is_terminal": false,
+        "peak_hours": "8:00 AM - 10:00 AM, 3:30 PM - 5:30 PM",
+        "notes": "Private medical complex with dedicated patient pick-up zone and taxi call station."
+    },
+    {
+        "id": "place-023",
+        "name": "Robinsons Place Iloilo (Main)",
+        "district": "City Proper",
+        "category": "mall",
+        "address": "Ledesma St. cor. Mabini St., City Proper, Iloilo City",
+        "coordinates": [
+            10.6961,
+            122.5639
+        ],
+        "transport_types": [
+            "jeepney",
+            "taxi",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Route 2 Villa",
+            "Route 7 Compania",
+            "Route 12 Mandurriao",
+            "Route 13 Hibao-an",
+            "First-town Antique and Oton jeepneys"
+        ],
+        "waiting_time_estimate": 17,
+        "status": "delayed",
+        "is_terminal": false,
+        "peak_hours": "12:00 PM - 2:00 PM, 5:00 PM - 7:30 PM",
+        "notes": "De Leon and Ledesma entrance has high jeepney congestion and waiting commuter lines."
+    },
+    {
+        "id": "place-024",
+        "name": "Marymart Center & SM Delgado",
+        "district": "City Proper",
+        "category": "mall",
+        "address": "Valeria St. cor. Delgado St., City Proper, Iloilo City",
+        "coordinates": [
+            10.6979,
+            122.5654
+        ],
+        "transport_types": [
+            "jeepney",
+            "taxi"
+        ],
+        "passing_routes": [
+            "Route 1 Bo. Obrero",
+            "Route 3 Ungka",
+            "Route 4 Ungka",
+            "Route 5 Festive Walk",
+            "Route 12 Mandurriao"
+        ],
+        "waiting_time_estimate": 16,
+        "status": "delayed",
+        "is_terminal": false,
+        "peak_hours": "11:30 AM - 1:30 PM, 5:00 PM - 7:00 PM",
+        "notes": "Crucial midtown intersection along Valeria St. Heavily patronized by shoppers and office workers."
+    },
+    {
+        "id": "place-025",
+        "name": "Iloilo International Airport (Cabatuan)",
+        "district": "Cabatuan / Metro Iloilo",
+        "category": "airport",
+        "address": "Airport Access Rd., Cabatuan, Iloilo",
+        "coordinates": [
+            10.8329,
+            122.4933
+        ],
+        "transport_types": [
+            "bus",
+            "taxi",
+            "uv"
+        ],
+        "passing_routes": [
+            "MetroExpress P2P SM City-Airport",
+            "MetroExpress P2P Festive Walk-Airport",
+            "Airport Accredited Taxi Bay",
+            "Cabatuan-Iloilo Jeepney Access"
+        ],
+        "waiting_time_estimate": 15,
+        "status": "moderate",
+        "is_terminal": true,
+        "peak_hours": "Depending on flight arrivals (morning & late evening)",
+        "notes": "Main airport for Panay Island. P2P bus leaves every 45-60 mins depending on flight schedules."
+    },
+    {
+        "id": "place-026",
+        "name": "Robinsons GT Town Center Pavia",
+        "district": "Pavia / Metro Iloilo",
+        "category": "mall",
+        "address": "Ungka II, Sen. Benigno Aquino Jr. Ave., Pavia, Iloilo",
+        "coordinates": [
+            10.7554,
+            122.5385
+        ],
+        "transport_types": [
+            "jeepney",
+            "bus",
+            "taxi",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Pavia-Iloilo Jeepney",
+            "Santa Barbara-Iloilo",
+            "Cabatuan-Iloilo",
+            "Pavia Tricycle TODA to Central Park / Centro Verde"
+        ],
+        "waiting_time_estimate": 14,
+        "status": "moderate",
+        "is_terminal": false,
+        "peak_hours": "7:00 AM - 8:30 AM, 5:30 PM - 7:30 PM",
+        "notes": "Transit point for subdivision residents in Pavia commuting to Iloilo City."
+    },
+    {
+        "id": "place-027",
+        "name": "Pavia Town Plaza & Parish Church",
+        "district": "Pavia / Metro Iloilo",
+        "category": "plaza",
+        "address": "Evangelista St., Pavia, Iloilo",
+        "coordinates": [
+            10.7772,
+            122.5401
+        ],
+        "transport_types": [
+            "jeepney",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Pavia-Iloilo City Jeepney",
+            "Pavia-Jaro Jeepney",
+            "Pavia-Aganan Tricycle",
+            "Pavia-Jibao-an Tricycle"
+        ],
+        "waiting_time_estimate": 15,
+        "status": "moderate",
+        "is_terminal": false,
+        "peak_hours": "6:30 AM - 8:00 AM, 4:30 PM - 6:30 PM",
+        "notes": "Town center loading zone. Tricycles disperse commuters to surrounding residential barangays."
+    },
+    {
+        "id": "place-028",
+        "name": "Santa Barbara Town Plaza & Historical Landmark",
+        "district": "Santa Barbara / Metro Iloilo",
+        "category": "plaza",
+        "address": "Castillo St., Santa Barbara, Iloilo",
+        "coordinates": [
+            10.8242,
+            122.5338
+        ],
+        "transport_types": [
+            "jeepney",
+            "bus",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Santa Barbara-Iloilo City Jeepney",
+            "Cabatuan-Iloilo Jeepney",
+            "Santa Barbara Tricycle TODA",
+            "Provincial Buses via Old National Highway"
+        ],
+        "waiting_time_estimate": 18,
+        "status": "delayed",
+        "is_terminal": false,
+        "peak_hours": "6:30 AM - 8:00 AM, 5:00 PM - 6:30 PM",
+        "notes": "Birthplace of the Philippine flag in Panay (Cry of Santa Barbara). High student transit to WVSU and CPU."
+    },
+    {
+        "id": "place-029",
+        "name": "Oton Public Market & Town Plaza",
+        "district": "Oton / Metro Iloilo",
+        "category": "plaza",
+        "address": "Mabini St., Oton, Iloilo",
+        "coordinates": [
+            10.6953,
+            122.4746
+        ],
+        "transport_types": [
+            "jeepney",
+            "bus",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Oton-Iloilo City Jeepney",
+            "Oton-Mohon Jeepney",
+            "Southern Antique Ceres Buses",
+            "Oton Coastal Tricycle"
+        ],
+        "waiting_time_estimate": 16,
+        "status": "delayed",
+        "is_terminal": false,
+        "peak_hours": "6:00 AM - 8:00 AM, 4:30 PM - 6:30 PM",
+        "notes": "First town south of Iloilo City. Massive morning outflow of workers heading to Iloilo City Proper and Megaworld."
+    },
+    {
+        "id": "place-030",
+        "name": "San Miguel Town Plaza",
+        "district": "San Miguel / Metro Iloilo",
+        "category": "plaza",
+        "address": "R. Savilla St., San Miguel, Iloilo",
+        "coordinates": [
+            10.7818,
+            122.4636
+        ],
+        "transport_types": [
+            "jeepney",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "San Miguel-Iloilo City via Hibao-an Jeepney",
+            "San Miguel-Leon Jeepney",
+            "San Miguel Tricycle TODA"
+        ],
+        "waiting_time_estimate": 20,
+        "status": "delayed",
+        "is_terminal": false,
+        "peak_hours": "6:00 AM - 7:30 AM, 4:30 PM - 6:30 PM",
+        "notes": "Agricultural and residential community. Commuters head toward Hibao-an terminal."
+    },
+    {
+        "id": "place-031",
+        "name": "Leganes Plaza & San Vicente Ferrer Shrine",
+        "district": "Leganes / Metro Iloilo",
+        "category": "plaza",
+        "address": "Quintin Salas St., Leganes, Iloilo",
+        "coordinates": [
+            10.7877,
+            122.5925
+        ],
+        "transport_types": [
+            "jeepney",
+            "bus",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Leganes-Iloilo City via Jaro Jeepney",
+            "Leganes-Tagbak Jeepney",
+            "Leganes Tricycle TODA",
+            "Northbound Ceres Buses"
+        ],
+        "waiting_time_estimate": 15,
+        "status": "moderate",
+        "is_terminal": false,
+        "peak_hours": "Every Friday (Pilgrim influx), daily 6:30 AM - 8:00 AM",
+        "notes": "Major religious pilgrimage destination in Panay. Heavy traffic and jeepney queues during Friday novenas."
+    },
+    {
+        "id": "place-032",
+        "name": "Zarraga Public Market & Crossing",
+        "district": "Zarraga / Metro Iloilo",
+        "category": "junction",
+        "address": "Iloilo-Capiz Rd., Zarraga, Iloilo",
+        "coordinates": [
+            10.8225,
+            122.6078
+        ],
+        "transport_types": [
+            "bus",
+            "jeepney",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Zarraga-Iloilo City Jeepney",
+            "Pototan-Iloilo Jeepney",
+            "Passi City Buses",
+            "Zarraga Tricycle TODA"
+        ],
+        "waiting_time_estimate": 17,
+        "status": "delayed",
+        "is_terminal": false,
+        "peak_hours": "6:00 AM - 8:00 AM, 4:30 PM - 6:30 PM",
+        "notes": "Strategic junction for routes splitting between Central Panay and Northern coastal towns."
+    },
+    {
+        "id": "place-033",
+        "name": "Passi City Bus Terminal",
+        "district": "Passi City / Central Iloilo",
+        "category": "terminal",
+        "address": "Simeon Aguilar St., Passi City, Iloilo",
+        "coordinates": [
+            11.1075,
+            122.6416
+        ],
+        "transport_types": [
+            "bus",
+            "jeepney",
+            "uv",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Passi City-Iloilo Tagbak Bus",
+            "Ceres Liner Central Panay",
+            "Passi-Calinog Jeepney",
+            "Passi-Dumangas Jeepney",
+            "Passi City Tricycle TODA"
+        ],
+        "waiting_time_estimate": 30,
+        "status": "very-delayed",
+        "is_terminal": true,
+        "peak_hours": "5:00 AM - 7:30 AM, 3:00 PM - 6:00 PM",
+        "notes": "Sweet City at the heart of Panay. Major connection point between Iloilo City and Roxas City / Capiz."
+    },
+    {
+        "id": "place-034",
+        "name": "Dumangas Port & Ferry Terminal",
+        "district": "Dumangas / Coastal Iloilo",
+        "category": "port",
+        "address": "Sitio Nabaing, Dacutan, Dumangas, Iloilo",
+        "coordinates": [
+            10.8267,
+            122.7167
+        ],
+        "transport_types": [
+            "bus",
+            "jeepney",
+            "uv",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Dumangas Port-Tagbak Iloilo Bus",
+            "Dumangas-Iloilo Jeepney",
+            "Bacolod RORO Vessel Trips",
+            "Dumangas Tricycle"
+        ],
+        "waiting_time_estimate": 25,
+        "status": "delayed",
+        "is_terminal": true,
+        "peak_hours": "RORO docking schedules throughout day and night",
+        "notes": "Vehicular RORO and passenger vessel gateway between Panay and Negros Island (Bacolod)."
+    },
+    {
+        "id": "place-035",
+        "name": "UP Visayas Miagao Campus & Town Center",
+        "district": "Miagao / Southern Iloilo",
+        "category": "university",
+        "address": "Matab-ang, Miagao, Iloilo",
+        "coordinates": [
+            10.6385,
+            122.2272
+        ],
+        "transport_types": [
+            "jeepney",
+            "bus",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Miagao-Iloilo Mohon Jeepney",
+            "San Joaquin-Iloilo Jeepney",
+            "Antique Ceres Buses",
+            "Miagao UPV Tricycle Shuttles"
+        ],
+        "waiting_time_estimate": 20,
+        "status": "delayed",
+        "is_terminal": false,
+        "peak_hours": "Friday afternoon (students going home to Iloilo City), Sunday evening",
+        "notes": "Massive student weekend migration between Miagao campus and Iloilo City."
+    },
+    {
+        "id": "place-036",
+        "name": "Guimbal Anchor & Town Plaza",
+        "district": "Guimbal / Southern Iloilo",
+        "category": "plaza",
+        "address": "Rizal St., Guimbal, Iloilo",
+        "coordinates": [
+            10.6588,
+            122.3183
+        ],
+        "transport_types": [
+            "jeepney",
+            "bus",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Guimbal-Iloilo Mohon Jeepney",
+            "Miagao-Iloilo Jeepney",
+            "Antique Ceres Buses",
+            "Guimbal Coastal Tricycle"
+        ],
+        "waiting_time_estimate": 17,
+        "status": "delayed",
+        "is_terminal": false,
+        "peak_hours": "6:00 AM - 7:30 AM, 4:30 PM - 6:30 PM",
+        "notes": "Yellow-stone historic town center along the southern coastal national highway."
+    },
+    {
+        "id": "place-037",
+        "name": "Smallville Complex & Riverside Boardwalk",
+        "district": "Mandurriao",
+        "category": "entertainment",
+        "address": "Sen. Benigno Aquino Jr. Ave., Mandurriao, Iloilo City",
+        "coordinates": [
+            10.7073,
+            122.5539
+        ],
+        "transport_types": [
+            "jeepney",
+            "taxi"
+        ],
+        "passing_routes": [
+            "Route 4 Ungka-Diversion",
+            "Route 8 Parola-SM City",
+            "Route 21 Tagbak-Festive Walk",
+            "Smallville 24/7 Taxi Stand"
+        ],
+        "waiting_time_estimate": 7,
+        "status": "normal",
+        "is_terminal": false,
+        "peak_hours": "6:00 PM - 11:00 PM, Midnight on weekends",
+        "notes": "Nightlife and dining hub along Iloilo Esplanade 1 and 2. Constant availability of taxis."
+    },
+    {
+        "id": "place-038",
+        "name": "Iloilo Esplanade 1 & 2 (Muelle Loney / Mandurriao Entrance)",
+        "district": "Mandurriao / Molo",
+        "category": "recreation",
+        "address": "Sen. Benigno Aquino Jr. Ave. Bridge, Mandurriao, Iloilo City",
+        "coordinates": [
+            10.7042,
+            122.5518
+        ],
+        "transport_types": [
+            "jeepney",
+            "taxi"
+        ],
+        "passing_routes": [
+            "Route 4 Ungka-Diversion",
+            "Route 8 Parola-SM City",
+            "Route 21 Tagbak-Festive Walk"
+        ],
+        "waiting_time_estimate": 8,
+        "status": "normal",
+        "is_terminal": false,
+        "peak_hours": "5:30 AM - 7:00 AM (joggers), 5:00 PM - 7:30 PM",
+        "notes": "Award-winning public riverside parkway with popular pedestrian drop-offs."
+    },
+    {
+        "id": "place-039",
+        "name": "Villa Beach, Breakthrough & Tatoy's",
+        "district": "Arevalo (Villa)",
+        "category": "recreation",
+        "address": "Sto. Niño Sur, Villa de Arevalo, Iloilo City",
+        "coordinates": [
+            10.6782,
+            122.5125
+        ],
+        "transport_types": [
+            "jeepney",
+            "taxi",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Route 2 Villa Baybay-City Proper",
+            "Villa-Breakthrough Tricycle TODA",
+            "Villa Beach Taxi Stand"
+        ],
+        "waiting_time_estimate": 15,
+        "status": "moderate",
+        "is_terminal": false,
+        "peak_hours": "11:30 AM - 2:00 PM (lunch crowd), 5:30 PM - 8:30 PM (dinner crowd)",
+        "notes": "Famous seafood coastline in Villa. High weekend tourist and local dining traffic."
+    },
+    {
+        "id": "place-040",
+        "name": "St. Paul's Hospital & General Luna Medical Corridor",
+        "district": "City Proper",
+        "category": "hospital",
+        "address": "General Luna St., City Proper, Iloilo City",
+        "coordinates": [
+            10.6975,
+            122.5645
+        ],
+        "transport_types": [
+            "jeepney",
+            "taxi"
+        ],
+        "passing_routes": [
+            "Route 1 Bo. Obrero",
+            "Route 2 Villa",
+            "Route 3 Ungka",
+            "Route 4 Ungka",
+            "Route 5 Festive Walk",
+            "Route 9 Mohon",
+            "Route 12 Mandurriao"
+        ],
+        "waiting_time_estimate": 15,
+        "status": "moderate",
+        "is_terminal": false,
+        "peak_hours": "8:00 AM - 10:00 AM, 3:30 PM - 5:30 PM",
+        "notes": "Historic hospital on General Luna. Senior citizens and outpatient crowds frequent this loading point."
+    },
+    {
+        "id": "place-041",
+        "name": "Calumpang Barangay Hall & Covered Gym",
+        "district": "Molo (Calumpang)",
+        "category": "plaza",
+        "address": "Calumpang Main Rd., Brgy. Calumpang, Molo, Iloilo City",
+        "coordinates": [
+            10.6872,
+            122.5365
+        ],
+        "transport_types": [
+            "jeepney",
+            "tricycle",
+            "taxi"
+        ],
+        "passing_routes": [
+            "Calumpang - City Proper via Molo Jeepney",
+            "Calumpang - Boulevard - Molo Plaza Tricycle",
+            "Calumpang TODA Shuttles"
+        ],
+        "waiting_time_estimate": 19,
+        "status": "delayed",
+        "is_terminal": true,
+        "peak_hours": "6:00 AM - 8:30 AM, 4:30 PM - 7:00 PM",
+        "notes": "Major commuter staging point for dense Calumpang coastal population heading to City Proper and downtown universities."
+    },
+    {
+        "id": "place-042",
+        "name": "Calumpang Elementary School & Terminal",
+        "district": "Molo (Calumpang)",
+        "category": "terminal",
+        "address": "Calumpang Interior Rd., Molo, Iloilo City",
+        "coordinates": [
+            10.689,
+            122.535
+        ],
+        "transport_types": [
+            "jeepney",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Calumpang - Super / Plaza Libertad Jeepney",
+            "Calumpang Tricycle TODA"
+        ],
+        "waiting_time_estimate": 16,
+        "status": "delayed",
+        "is_terminal": true,
+        "peak_hours": "6:30 AM - 8:00 AM, 11:30 AM - 1:00 PM, 4:30 PM - 6:30 PM",
+        "notes": "Starting terminal for Calumpang traditional jeepneys. Long waiting lines during morning rush hour as commuters wait for empty jeepneys."
+    },
+    {
+        "id": "place-043",
+        "name": "Calumpang Coastal Road Junction (Sooc Boundary)",
+        "district": "Molo (Calumpang)",
+        "category": "junction",
+        "address": "Coastal Rd. cor. Calumpang-Arevalo link, Molo, Iloilo City",
+        "coordinates": [
+            10.6835,
+            122.529
+        ],
+        "transport_types": [
+            "jeepney",
+            "tricycle",
+            "taxi"
+        ],
+        "passing_routes": [
+            "Calumpang - Villa Tricycle",
+            "Sooc - Calumpang Shuttle",
+            "Calumpang - Molo Jeepney"
+        ],
+        "waiting_time_estimate": 14,
+        "status": "moderate",
+        "is_terminal": false,
+        "peak_hours": "6:30 AM - 8:00 AM, 5:00 PM - 6:30 PM",
+        "notes": "Boundary between Molo and Arevalo coastal barangays. Heavy tricycle transit point connecting to Villa Beach."
+    },
+    {
+        "id": "place-044",
+        "name": "Calumpang – Boulevard Crossing",
+        "district": "Molo (Calumpang)",
+        "category": "junction",
+        "address": "Boulevard cor. Calumpang Rd., Molo, Iloilo City",
+        "coordinates": [
+            10.692,
+            122.5385
+        ],
+        "transport_types": [
+            "jeepney",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Calumpang - City Proper Jeepney",
+            "Boulevard - Molo Plaza Tricycle TODA",
+            "Calumpang - San Juan Tricycle"
+        ],
+        "waiting_time_estimate": 15,
+        "status": "moderate",
+        "is_terminal": false,
+        "peak_hours": "7:00 AM - 8:30 AM, 5:00 PM - 7:00 PM",
+        "notes": "Choke point connecting dense seaside communities of Boulevard and Calumpang to Molo Plaza proper."
+    },
+    {
+        "id": "place-045",
+        "name": "San Juan Plaza & Loading Zone",
+        "district": "Molo",
+        "category": "plaza",
+        "address": "San Juan St., Molo, Iloilo City",
+        "coordinates": [
+            10.6905,
+            122.5398
+        ],
+        "transport_types": [
+            "jeepney",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Calumpang - City Proper Jeepney",
+            "San Juan - Molo Plaza Tricycle"
+        ],
+        "waiting_time_estimate": 12,
+        "status": "moderate",
+        "is_terminal": false,
+        "peak_hours": "6:30 AM - 8:30 AM, 4:30 PM - 6:30 PM",
+        "notes": "High-density residential staging zone adjacent to Calumpang."
+    },
+    {
+        "id": "place-046",
+        "name": "Sooc & Calaparan Terminal",
+        "district": "Arevalo (Villa)",
+        "category": "terminal",
+        "address": "Sooc Rd., Villa de Arevalo, Iloilo City",
+        "coordinates": [
+            10.6815,
+            122.5215
+        ],
+        "transport_types": [
+            "jeepney",
+            "tricycle"
+        ],
+        "passing_routes": [
+            "Calaparan / Sooc - Villa Baybay Jeepney",
+            "Sooc - Calumpang Tricycle"
+        ],
+        "waiting_time_estimate": 18,
+        "status": "delayed",
+        "is_terminal": true,
+        "peak_hours": "6:00 AM - 8:00 AM, 5:00 PM - 7:00 PM",
+        "notes": "Large residential community bordering Calumpang with heavy daily commuter outflow."
+    }
+]

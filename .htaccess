@@ -1,15 +1,13 @@
 # Root .htaccess — Protect backend files from direct browser access
 Options -Indexes
 
-# Block access to sensitive file types
-<FilesMatch "\.(sql|md|env|log|ini)$">
+<FilesMatch "\.(json|md|env|log)$">
     Require all denied
 </FilesMatch>
 
-# Block access to backend directories (direct browsing)
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteRule ^config/   - [F,L]
     RewriteRule ^includes/ - [F,L]
-    RewriteRule ^database/ - [F,L]
+    RewriteRule ^data/     - [F,L]
 </IfModule>

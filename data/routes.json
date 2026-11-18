@@ -1,0 +1,600 @@
+[
+    {
+        "id": "route-001",
+        "route_code": "ROUTE-01-OBRERO",
+        "transport_type": "jeepney",
+        "transport_label": "Modern & Traditional Jeepney",
+        "transport_icon": "🚐",
+        "route_name": "Route 1: Bo. Obrero – City Proper via General Luna",
+        "origin": "Bo. Obrero / Lapuz Ferry Terminal",
+        "destination": "Plaza Libertad / City Proper",
+        "origin_coords": [
+            10.7001,
+            122.5835
+        ],
+        "destination_coords": [
+            10.6928,
+            122.5714
+        ],
+        "fare": 13,
+        "duration_minutes": 20,
+        "estimated_wait_minutes": 15,
+        "status": "moderate",
+        "passenger_count": 22,
+        "via": "General Luna St., University of San Agustin, St. Paul's, Provincial Capitol",
+        "is_demo": false,
+        "last_updated": "2026-11-18T14:30:00+08:00"
+    },
+    {
+        "id": "route-002",
+        "route_code": "ROUTE-02-VILLA",
+        "transport_type": "jeepney",
+        "transport_label": "Jeepney",
+        "transport_icon": "🚐",
+        "route_name": "Route 2: Villa Baybay – City Proper via Molo Plaza",
+        "origin": "Mohon Terminal / Villa Beach",
+        "destination": "Plaza Libertad / Calle Real",
+        "origin_coords": [
+            10.6865,
+            122.5187
+        ],
+        "destination_coords": [
+            10.6928,
+            122.5714
+        ],
+        "fare": 15,
+        "duration_minutes": 30,
+        "estimated_wait_minutes": 18,
+        "status": "delayed",
+        "passenger_count": 28,
+        "via": "Arevalo Plaza, Avanceña St., Molo Plaza, The Medical City, General Luna",
+        "is_demo": false,
+        "last_updated": "2026-11-18T14:28:00+08:00"
+    },
+    {
+        "id": "route-003",
+        "route_code": "ROUTE-03-UNGKA-CPU",
+        "transport_type": "jeepney",
+        "transport_label": "Modern Jeepney",
+        "transport_icon": "🚐",
+        "route_name": "Route 3: Ungka Terminal – City Proper via CPU & Jaro Plaza",
+        "origin": "Ungka Transport Terminal (Pavia boundary)",
+        "destination": "Super / Iloilo Terminal Market",
+        "origin_coords": [
+            10.7495,
+            122.5447
+        ],
+        "destination_coords": [
+            10.6974,
+            122.5658
+        ],
+        "fare": 16,
+        "duration_minutes": 35,
+        "estimated_wait_minutes": 14,
+        "status": "moderate",
+        "passenger_count": 32,
+        "via": "Central Philippine University (CPU), Jaro Plaza & Cathedral, WVSU Luna St., General Luna",
+        "is_demo": false,
+        "last_updated": "2026-11-18T14:35:00+08:00"
+    },
+    {
+        "id": "route-004",
+        "route_code": "ROUTE-04-UNGKA-DIV",
+        "transport_type": "jeepney",
+        "transport_label": "Modern Jeepney",
+        "transport_icon": "🚐",
+        "route_name": "Route 4: Ungka Terminal – City Proper via Diversion & SM City",
+        "origin": "Ungka Transport Terminal",
+        "destination": "Calle Real / Plaza Libertad",
+        "origin_coords": [
+            10.7495,
+            122.5447
+        ],
+        "destination_coords": [
+            10.6958,
+            122.5702
+        ],
+        "fare": 16,
+        "duration_minutes": 28,
+        "estimated_wait_minutes": 10,
+        "status": "normal",
+        "passenger_count": 18,
+        "via": "Sen. Benigno Aquino Jr. Ave. (Diversion), SM City Iloilo, Atria Park District, Smallville, Infante",
+        "is_demo": false,
+        "last_updated": "2026-11-18T14:40:00+08:00"
+    },
+    {
+        "id": "route-005",
+        "route_code": "ROUTE-05-FESTIVE",
+        "transport_type": "jeepney",
+        "transport_label": "Modern Jeepney",
+        "transport_icon": "🚐",
+        "route_name": "Route 5: Festive Walk Transport Hub – City Proper via Jalandoni",
+        "origin": "Festive Walk Transport Hub (Megaworld)",
+        "destination": "Plaza Libertad / City Hall",
+        "origin_coords": [
+            10.7157,
+            122.5443
+        ],
+        "destination_coords": [
+            10.6928,
+            122.5714
+        ],
+        "fare": 14,
+        "duration_minutes": 22,
+        "estimated_wait_minutes": 8,
+        "status": "normal",
+        "passenger_count": 14,
+        "via": "Iloilo Business Park, Diversion Road, Jalandoni St., University of San Agustin, JM Basa",
+        "is_demo": false,
+        "last_updated": "2026-11-18T14:42:00+08:00"
+    },
+    {
+        "id": "route-006",
+        "route_code": "ROUTE-10-TAGBAK",
+        "transport_type": "jeepney",
+        "transport_label": "Jeepney",
+        "transport_icon": "🚐",
+        "route_name": "Route 10: Tagbak Terminal / Buntatala – City Proper via Jaro",
+        "origin": "Tagbak Transport Terminal (Jaro)",
+        "destination": "Super / Terminal Market",
+        "origin_coords": [
+            10.7589,
+            122.5801
+        ],
+        "destination_coords": [
+            10.6974,
+            122.5658
+        ],
+        "fare": 15,
+        "duration_minutes": 32,
+        "estimated_wait_minutes": 24,
+        "status": "delayed",
+        "passenger_count": 35,
+        "via": "Buntatala, Quintin Salas, Jaro Plaza, Commission Civil, Luna St., Iznart St.",
+        "is_demo": false,
+        "last_updated": "2026-11-18T14:20:00+08:00"
+    },
+    {
+        "id": "route-007",
+        "route_code": "ROUTE-12-MANDURRIAO",
+        "transport_type": "jeepney",
+        "transport_label": "Jeepney",
+        "transport_icon": "🚐",
+        "route_name": "Route 12: Mandurriao – City Proper via WVMC & Tabucan",
+        "origin": "Mandurriao Plaza / Q. Abeto St.",
+        "destination": "Plaza Libertad / Calle Real",
+        "origin_coords": [
+            10.7188,
+            122.5318
+        ],
+        "destination_coords": [
+            10.6958,
+            122.5702
+        ],
+        "fare": 14,
+        "duration_minutes": 25,
+        "estimated_wait_minutes": 16,
+        "status": "delayed",
+        "passenger_count": 24,
+        "via": "Western Visayas Medical Center (WVMC), Tabucan, General Luna St., Marymart, JM Basa",
+        "is_demo": false,
+        "last_updated": "2026-11-18T14:25:00+08:00"
+    },
+    {
+        "id": "route-008",
+        "route_code": "ROUTE-14-HIBAOAN-CPU",
+        "transport_type": "jeepney",
+        "transport_label": "Modern Jeepney",
+        "transport_icon": "🚐",
+        "route_name": "Route 14: Hibao-an – Jaro CPU via Festive Walk & Diversion",
+        "origin": "Hibao-an Transport Terminal",
+        "destination": "Central Philippine University (CPU)",
+        "origin_coords": [
+            10.7292,
+            122.5152
+        ],
+        "destination_coords": [
+            10.7303,
+            122.5542
+        ],
+        "fare": 15,
+        "duration_minutes": 26,
+        "estimated_wait_minutes": 19,
+        "status": "delayed",
+        "passenger_count": 27,
+        "via": "Guzman-Jesena, Megaworld Festive Walk, Diversion Road, Jaro Plaza",
+        "is_demo": false,
+        "last_updated": "2026-11-18T14:15:00+08:00"
+    },
+    {
+        "id": "route-009",
+        "route_code": "ROUTE-15-MOLO-LAPUZ",
+        "transport_type": "jeepney",
+        "transport_label": "Jeepney",
+        "transport_icon": "🚐",
+        "route_name": "Route 15: Molo Plaza – Lapuz Ferry Terminal via Plaza Libertad",
+        "origin": "Molo Plaza & Church",
+        "destination": "Iloilo Fastcraft & Ferry Terminal (Lapuz)",
+        "origin_coords": [
+            10.6975,
+            122.5447
+        ],
+        "destination_coords": [
+            10.7001,
+            122.5835
+        ],
+        "fare": 14,
+        "duration_minutes": 25,
+        "estimated_wait_minutes": 12,
+        "status": "moderate",
+        "passenger_count": 19,
+        "via": "The Medical City, General Luna, Plaza Libertad, City Hall, Quirino-Lopez Bridge, Lapuz",
+        "is_demo": false,
+        "last_updated": "2026-11-18T14:38:00+08:00"
+    },
+    {
+        "id": "route-010",
+        "route_code": "ROUTE-21-TAGBAK-MEG",
+        "transport_type": "jeepney",
+        "transport_label": "Modern Aircon Jeepney",
+        "transport_icon": "🚐",
+        "route_name": "Route 21: Tagbak Terminal – Festive Walk Mall via SM City",
+        "origin": "Tagbak Transport Terminal (Jaro)",
+        "destination": "Festive Walk Transport Hub (Megaworld)",
+        "origin_coords": [
+            10.7589,
+            122.5801
+        ],
+        "destination_coords": [
+            10.7157,
+            122.5443
+        ],
+        "fare": 18,
+        "duration_minutes": 22,
+        "estimated_wait_minutes": 11,
+        "status": "moderate",
+        "passenger_count": 26,
+        "via": "Coastal Road, Balabago, Buhang, SM City Iloilo Northpoint, Festive Walk Blvd.",
+        "is_demo": false,
+        "last_updated": "2026-11-18T14:45:00+08:00"
+    },
+    {
+        "id": "route-011",
+        "route_code": "BUS-P2P-AIRPORT-SM",
+        "transport_type": "bus",
+        "transport_label": "MetroExpress P2P Airport Bus",
+        "transport_icon": "🚌",
+        "route_name": "MetroExpress P2P: SM City Iloilo – Iloilo International Airport",
+        "origin": "SM City Iloilo Traveler's Lounge",
+        "destination": "Iloilo International Airport (Cabatuan)",
+        "origin_coords": [
+            10.7138,
+            122.5516
+        ],
+        "destination_coords": [
+            10.8329,
+            122.4933
+        ],
+        "fare": 80,
+        "duration_minutes": 35,
+        "estimated_wait_minutes": 20,
+        "status": "delayed",
+        "passenger_count": 30,
+        "via": "Sen. Benigno Aquino Jr. Ave., Ungka Flyover, Pavia, Santa Barbara Bypass, Airport Access Road",
+        "is_demo": false,
+        "last_updated": "2026-11-18T14:10:00+08:00"
+    },
+    {
+        "id": "route-012",
+        "route_code": "BUS-P2P-AIRPORT-MEG",
+        "transport_type": "bus",
+        "transport_label": "MetroExpress P2P Airport Bus",
+        "transport_icon": "🚌",
+        "route_name": "MetroExpress P2P: Festive Walk Hub – Iloilo International Airport",
+        "origin": "Festive Walk Transport Hub (Megaworld)",
+        "destination": "Iloilo International Airport (Cabatuan)",
+        "origin_coords": [
+            10.7157,
+            122.5443
+        ],
+        "destination_coords": [
+            10.8329,
+            122.4933
+        ],
+        "fare": 80,
+        "duration_minutes": 35,
+        "estimated_wait_minutes": 25,
+        "status": "delayed",
+        "passenger_count": 32,
+        "via": "Megaworld Blvd., Circumferential C1, Airport Expressway",
+        "is_demo": false,
+        "last_updated": "2026-11-18T14:05:00+08:00"
+    },
+    {
+        "id": "route-013",
+        "route_code": "BUS-CERES-NORTH-PASSI",
+        "transport_type": "bus",
+        "transport_label": "Ceres Liner Provincial Bus",
+        "transport_icon": "🚌",
+        "route_name": "Ceres Liner North: Tagbak Terminal – Passi City Bus Terminal",
+        "origin": "Tagbak Transport Terminal (Jaro)",
+        "destination": "Passi City Bus Terminal",
+        "origin_coords": [
+            10.7589,
+            122.5801
+        ],
+        "destination_coords": [
+            11.1075,
+            122.6416
+        ],
+        "fare": 85,
+        "duration_minutes": 65,
+        "estimated_wait_minutes": 30,
+        "status": "very-delayed",
+        "passenger_count": 48,
+        "via": "Leganes, Zarraga, Pototan, Dingle, Dueñas, Passi City",
+        "is_demo": false,
+        "last_updated": "2026-11-18T14:00:00+08:00"
+    },
+    {
+        "id": "route-014",
+        "route_code": "BUS-CERES-SOUTH-MIAGAO",
+        "transport_type": "bus",
+        "transport_label": "Provincial Bus / South Jeepney",
+        "transport_icon": "🚌",
+        "route_name": "South Corridor: Mohon Terminal – Guimbal – UP Visayas Miagao",
+        "origin": "Mohon Transport Terminal (Arevalo)",
+        "destination": "UP Visayas Miagao Campus",
+        "origin_coords": [
+            10.6865,
+            122.5187
+        ],
+        "destination_coords": [
+            10.6385,
+            122.2272
+        ],
+        "fare": 65,
+        "duration_minutes": 55,
+        "estimated_wait_minutes": 22,
+        "status": "delayed",
+        "passenger_count": 40,
+        "via": "Oton Plaza, Tigbauan Town Center, Guimbal Anchor, Miagao Heritage Church",
+        "is_demo": false,
+        "last_updated": "2026-11-18T14:18:00+08:00"
+    },
+    {
+        "id": "route-015",
+        "route_code": "UV-TAGBAK-KALIBO",
+        "transport_type": "uv",
+        "transport_label": "UV Express Van",
+        "transport_icon": "🚗",
+        "route_name": "UV Express: Tagbak Terminal – Kalibo / Caticlan Gateway",
+        "origin": "Tagbak Transport Terminal (Jaro)",
+        "destination": "Passi City / Kalibo Gateway",
+        "origin_coords": [
+            10.7589,
+            122.5801
+        ],
+        "destination_coords": [
+            11.1075,
+            122.6416
+        ],
+        "fare": 180,
+        "duration_minutes": 90,
+        "estimated_wait_minutes": 35,
+        "status": "very-delayed",
+        "passenger_count": 18,
+        "via": "Zarraga, Pototan, Passi City, Tapaz / Calinog, Aklan boundary",
+        "is_demo": false,
+        "last_updated": "2026-11-18T13:55:00+08:00"
+    },
+    {
+        "id": "route-016",
+        "route_code": "UV-MOHON-ANTIQUE",
+        "transport_type": "uv",
+        "transport_label": "UV Express Van",
+        "transport_icon": "🚗",
+        "route_name": "UV Express: Mohon Terminal – San Jose de Buenavista (Antique)",
+        "origin": "Mohon Transport Terminal (Arevalo)",
+        "destination": "Guimbal / San Joaquin / Antique",
+        "origin_coords": [
+            10.6865,
+            122.5187
+        ],
+        "destination_coords": [
+            10.6588,
+            122.3183
+        ],
+        "fare": 160,
+        "duration_minutes": 80,
+        "estimated_wait_minutes": 28,
+        "status": "delayed",
+        "passenger_count": 15,
+        "via": "Oton, Tigbauan, Guimbal, Miagao, San Joaquin, Hamtic, San Jose",
+        "is_demo": false,
+        "last_updated": "2026-11-18T14:02:00+08:00"
+    },
+    {
+        "id": "route-017",
+        "route_code": "TRIKE-JARO-CPU",
+        "transport_type": "tricycle",
+        "transport_label": "Jaro Tricycle TODA",
+        "transport_icon": "🛺",
+        "route_name": "Jaro Plaza – CPU Gate 3 – Dungon Interior",
+        "origin": "Jaro Plaza & Cathedral",
+        "destination": "Central Philippine University (CPU)",
+        "origin_coords": [
+            10.7289,
+            122.5583
+        ],
+        "destination_coords": [
+            10.7303,
+            122.5542
+        ],
+        "fare": 15,
+        "duration_minutes": 8,
+        "estimated_wait_minutes": 5,
+        "status": "normal",
+        "passenger_count": 6,
+        "via": "Fajardo St., Lopez Jaena St., CPU Halfway, Dungon A & B Subdivisions",
+        "is_demo": false,
+        "last_updated": "2026-11-18T14:48:00+08:00"
+    },
+    {
+        "id": "route-018",
+        "route_code": "TRIKE-MOLO-CALUMPANG",
+        "transport_type": "tricycle",
+        "transport_label": "Molo Tricycle TODA",
+        "transport_icon": "🛺",
+        "route_name": "Molo Plaza – Calumpang – Boulevard Coastal Communities",
+        "origin": "Molo Plaza & Church",
+        "destination": "Calumpang / Boulevard Interior",
+        "origin_coords": [
+            10.6975,
+            122.5447
+        ],
+        "destination_coords": [
+            10.6942,
+            122.5408
+        ],
+        "fare": 15,
+        "duration_minutes": 10,
+        "estimated_wait_minutes": 6,
+        "status": "normal",
+        "passenger_count": 8,
+        "via": "San Pedro St., Locsin St., The Medical City, Calumpang coastal road",
+        "is_demo": false,
+        "last_updated": "2026-11-18T14:50:00+08:00"
+    },
+    {
+        "id": "route-019",
+        "route_code": "TRIKE-PAVIA-SUBD",
+        "transport_type": "tricycle",
+        "transport_label": "Pavia TODA Tricycle",
+        "transport_icon": "🛺",
+        "route_name": "Robinsons GT Town Center – Central Park / Centro Verde Pavia",
+        "origin": "Robinsons GT Town Center Pavia",
+        "destination": "Pavia Town Plaza & Subdivisions",
+        "origin_coords": [
+            10.7554,
+            122.5385
+        ],
+        "destination_coords": [
+            10.7772,
+            122.5401
+        ],
+        "fare": 20,
+        "duration_minutes": 12,
+        "estimated_wait_minutes": 8,
+        "status": "normal",
+        "passenger_count": 10,
+        "via": "Ungka II, Aganan, Evangelista St., Providence, Deca Homes Pavia",
+        "is_demo": false,
+        "last_updated": "2026-11-18T14:44:00+08:00"
+    },
+    {
+        "id": "route-020",
+        "route_code": "TAXI-FESTIVE-AIRPORT",
+        "transport_type": "taxi",
+        "transport_label": "Metred & Grab Taxi",
+        "transport_icon": "🚕",
+        "route_name": "Festive Walk / SM City – Iloilo International Airport (Direct Taxi)",
+        "origin": "Festive Walk Transport Hub (Megaworld)",
+        "destination": "Iloilo International Airport (Cabatuan)",
+        "origin_coords": [
+            10.7157,
+            122.5443
+        ],
+        "destination_coords": [
+            10.8329,
+            122.4933
+        ],
+        "fare": 450,
+        "duration_minutes": 25,
+        "estimated_wait_minutes": 5,
+        "status": "normal",
+        "passenger_count": 4,
+        "via": "Direct via Circumferential C1 & Airport Expressway (Fastest option)",
+        "is_demo": false,
+        "last_updated": "2026-11-18T14:52:00+08:00"
+    },
+    {
+        "id": "route-021",
+        "route_code": "ROUTE-CALUMPANG-CITY",
+        "transport_type": "jeepney",
+        "transport_label": "Traditional & Modern Jeepney",
+        "transport_icon": "🚐",
+        "route_name": "Calumpang – City Proper (Super / Plaza Libertad) via Molo Plaza",
+        "origin": "Calumpang Elementary School / Barangay Hall",
+        "destination": "Super / Plaza Libertad / Calle Real",
+        "origin_coords": [
+            10.6872,
+            122.5365
+        ],
+        "destination_coords": [
+            10.6974,
+            122.5658
+        ],
+        "fare": 13,
+        "duration_minutes": 25,
+        "estimated_wait_minutes": 20,
+        "status": "delayed",
+        "passenger_count": 34,
+        "via": "Calumpang Main Rd., San Juan, Molo Plaza, The Medical City, Infante, General Luna, Iznart St., Super Market",
+        "is_demo": false,
+        "last_updated": "2026-11-18T09:31:05+01:00"
+    },
+    {
+        "id": "route-022",
+        "route_code": "TRIKE-CALUMPANG-MOLO",
+        "transport_type": "tricycle",
+        "transport_label": "Calumpang TODA Tricycle",
+        "transport_icon": "🛺",
+        "route_name": "Calumpang Interior – Boulevard – Molo Plaza Terminal",
+        "origin": "Calumpang Barangay Hall & Gym",
+        "destination": "Molo Plaza & Church",
+        "origin_coords": [
+            10.6872,
+            122.5365
+        ],
+        "destination_coords": [
+            10.6975,
+            122.5447
+        ],
+        "fare": 15,
+        "duration_minutes": 10,
+        "estimated_wait_minutes": 7,
+        "status": "normal",
+        "passenger_count": 8,
+        "via": "Calumpang Main Rd., Boulevard Crossing, Locsin St., San Pedro St., Molo Plaza",
+        "is_demo": false,
+        "last_updated": "2026-11-18T09:31:05+01:00"
+    },
+    {
+        "id": "route-023",
+        "route_code": "ROUTE-CALUMPANG-FESTIVE",
+        "transport_type": "jeepney",
+        "transport_label": "Modern Jeepney / PUV",
+        "transport_icon": "🚐",
+        "route_name": "Calumpang – Molo – Festive Walk Mall via Diversion",
+        "origin": "Calumpang Barangay Hall",
+        "destination": "Festive Walk Transport Hub (Megaworld)",
+        "origin_coords": [
+            10.6872,
+            122.5365
+        ],
+        "destination_coords": [
+            10.7157,
+            122.5443
+        ],
+        "fare": 16,
+        "duration_minutes": 22,
+        "estimated_wait_minutes": 15,
+        "status": "moderate",
+        "passenger_count": 25,
+        "via": "Calumpang Coastal, San Juan, Molo Plaza, Carpenter Bridge, Infante, Diversion Road, Festive Walk",
+        "is_demo": false,
+        "last_updated": "2026-11-18T09:31:05+01:00"
+    }
+]

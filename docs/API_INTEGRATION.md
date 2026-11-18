@@ -1,256 +1,198 @@
-# Backend API — Integration Guide
+# Iloilo Transit API & MapTiler Integration Guide
 
-> **For the Front-End Developer**  
-> This document explains every API endpoint, their URLs, request/response formats, and which HTML elements they connect to.
-
-## Base URL
-
-When running on XAMPP:
-```
-http://localhost/hackathon-app/api/
-```
+> **Project: Long Waiting Times in Iloilo Public Transportation**  
+> Covers: Jeepneys (Modern & Traditional), Ceres Buses, P2P Express, UV Express, Tricycle TODAs, and Taxis across Iloilo City and Metro Iloilo.  
+> **Interactive Map Powered by MapTiler Key:** `guHcH7diPQJI56dDsa2f`
 
 ---
 
-## 1. Waiting Times
+## 1. Quick Start
 
-### `GET /api/waiting-times.php`
+**Start local PHP API Server:**
+```powershell
+cd C:\Users\renz\Documents\Visual_Code\Projects\hackathon-app
+C:\xampp\php\php.exe -S localhost:8888
+```
 
-Returns current waiting times for all active routes.
+Base API URL: `http://localhost:8888/api/`  
+*(Or `http://localhost/hackathon-app/api/` when running through XAMPP Apache)*
+
+---
+
+## 2. API Endpoints Overview
+
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/places.php` | List & search specific Iloilo transit stops, terminals, plazas, universities, malls |
+| `GET` | `/api/geocoding.php?q=...` | MapTiler geocoding strictly bounded to Iloilo + local Iloilo places registry |
+| `GET` | `/api/routing.php` | Road routing (distance, duration, GeoJSON line) + matches best Iloilo PUVs |
+| `GET` | `/api/map-config.php` | MapTiler key, tile URLs, Iloilo center coordinates and boundary settings |
+| `GET` | `/api/waiting-times.php` | Real-time estimated waiting times for all Iloilo PUV routes |
+| `GET` | `/api/routes.php` | Search and filter Iloilo transportation routes |
+| `POST`| `/api/reports.php` | Submit commuter wait time reports |
+| `GET` | `/api/stats.php` | Summary statistics for the landing page hero section |
+
+---
+
+## 3. Detailed Endpoint Reference
+
+### A. Iloilo Transit Places (`GET /api/places.php`)
+Returns curated Iloilo public transportation hubs, terminals, and stops with exact coordinates and wait times.
 
 **Query Parameters:**
+* `q`: Search term (e.g. `jaro`, `cpu`, `sm city`, `medical city`, `ungka`)
+* `district`: Filter by district (`city proper`, `jaro`, `mandurriao`, `molo`, `la paz`, `arevalo`, `lapuz`, `pavia`, `santa barbara`, `cabatuan`, `oton`, etc.)
+* `type`: Filter by PUV mode (`jeepney`, `bus`, `uv`, `tricycle`, `taxi`)
+* `category`: Filter by type (`terminal`, `mall`, `plaza`, `university`, `hospital`, `port`, `airport`)
 
-| Param    | Type   | Required | Description                                           |
-|----------|--------|----------|-------------------------------------------------------|
-| `type`   | string | No       | Filter: `jeepney`, `bus`, `uv`, `train`               |
-| `status` | string | No       | Filter: `normal`, `moderate`, `delayed`, `very-delayed` |
-| `id`     | int    | No       | Get single record by route ID                         |
+**Sample Request:**
+```
+GET /api/places.php?district=jaro&type=jeepney
+```
 
-**Response:**
+**Sample Response:**
 ```json
 {
   "success": true,
   "data": [
     {
-      "id": 1,
-      "route_id": "route-001",
-      "transport_type": "jeepney",
-      "transport_label": "Jeepney",
-      "transport_icon": "🚐",
-      "route_name": "City Proper - Jaro",
-      "origin": "Iloilo City Proper",
-      "destination": "Jaro",
-      "fare": "13.00",
-      "duration_minutes": 25,
-      "estimated_wait_minutes": 18,
+      "id": "place-001",
+      "name": "Jaro Plaza & Cathedral",
+      "district": "Jaro",
+      "category": "plaza",
+      "address": "E. Lopez St. cor. Commission Civil St., Jaro, Iloilo City",
+      "coordinates": [10.7289, 122.5583],
+      "transport_types": ["jeepney", "bus", "taxi", "tricycle"],
+      "passing_routes": ["Route 3 Ungka-City Proper", "Route 10 Buntatala", "Route 14 Hibao-an-Jaro CPU"],
+      "waiting_time_estimate": 18,
       "status": "delayed",
-      "passenger_count": 25,
-      "is_demo": true,
-      "last_updated": "2026-11-18 14:30:00"
+      "is_terminal": false
     }
   ],
-  "message": "Waiting times retrieved.",
-  "meta": { "timestamp": "...", "count": 12 }
-}
-```
-
-**Front-end elements:**
-- `#waiting-time-container` → render cards here
-- `#waiting-filter-all`, `#waiting-filter-jeepney`, etc. → trigger `?type=` filter
-- `.waiting-card` with `data-transport-type`, `data-route-id`, `data-status`, `data-waiting-minutes`
-
-**JS integration example:**
-```js
-async function fetchWaitingTimes(type = 'all') {
-    const url = type === 'all'
-        ? '/hackathon-app/api/waiting-times.php'
-        : `/hackathon-app/api/waiting-times.php?type=${type}`;
-    const res = await fetch(url);
-    const json = await res.json();
-    if (json.success) {
-        renderWaitingCards(json.data);
-    }
+  "meta": { "count": 8, "region": "Iloilo Province & City" }
 }
 ```
 
 ---
 
-## 2. Routes
+### B. Geocoding strictly in Iloilo (`GET /api/geocoding.php?q=...`)
+Converts any Iloilo street, building, or landmark into coordinates `[latitude, longitude]`. Uses MapTiler Geocoding API bounded strictly to Iloilo (`bbox=122.35,10.55,123.10,11.35`) merged with the local Iloilo database.
 
-### `GET /api/routes.php`
-
-Search and list transportation routes.
-
-| Param         | Type   | Required | Description              |
-|---------------|--------|----------|--------------------------|
-| `origin`      | string | No       | Filter by origin (LIKE)  |
-| `destination` | string | No       | Filter by destination    |
-| `type`        | string | No       | Filter by transport type |
-| `q`           | string | No       | General search query     |
-
-**Front-end elements:**
-- `#route-search-form` → form with `name="origin"`, `name="destination"`, `name="transport_type"`
-- `#route-search-results` → results container
-- `.route-result-card` → each result
-
-**JS integration example:**
-```js
-document.getElementById('route-search-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const form = new FormData(e.target);
-    const params = new URLSearchParams({
-        origin: form.get('origin'),
-        destination: form.get('destination'),
-        type: form.get('transport_type'),
-    });
-    const res = await fetch(`/hackathon-app/api/routes.php?${params}`);
-    const json = await res.json();
-    if (json.success) {
-        renderRouteResults(json.data);
-    }
-});
+**Sample Request:**
+```
+GET /api/geocoding.php?q=Molo+Plaza
 ```
 
----
-
-## 3. Reports
-
-### `POST /api/reports.php`
-
-Submit a commuter waiting-time report.
-
-**Request Body (JSON):**
-```json
-{
-  "commuter_name": "Juan",
-  "transport_type": "jeepney",
-  "route_name": "City Proper - Jaro",
-  "location": "Jaro Plaza",
-  "waiting_minutes": 25,
-  "report_description": "Very long line, only 2 jeepneys in 30 min"
-}
-```
-
-| Field                | Type   | Required | Validation                 |
-|----------------------|--------|----------|----------------------------|
-| `commuter_name`      | string | No       | Max 100 chars              |
-| `transport_type`     | string | Yes      | jeepney/bus/uv/train/other |
-| `route_name`         | string | Yes      | Max 120 chars              |
-| `location`           | string | Yes      | Max 200 chars              |
-| `waiting_minutes`    | int    | Yes      | Positive integer           |
-| `report_description` | string | No       | Max 2000 chars             |
-
-**Success Response (201):**
-```json
-{
-  "success": true,
-  "data": { "report_id": 42 },
-  "message": "Report submitted successfully. Thank you for helping fellow commuters!"
-}
-```
-
-**Validation Error (422):**
-```json
-{
-  "success": false,
-  "message": "Validation failed.",
-  "errors": {
-    "transport_type": "Transport type is required.",
-    "waiting_minutes": "Waiting time must be a positive number."
-  }
-}
-```
-
-**Front-end elements:**
-- `#report-form` → the form
-- `#report-success-message` → show on success
-- `#report-error-message` → show on validation error
-- Form fields: `name="commuter_name"`, `name="transport_type"`, etc.
-
-### `GET /api/reports.php`
-
-List submitted reports (paginated).
-
-| Param      | Type   | Description                          |
-|------------|--------|--------------------------------------|
-| `page`     | int    | Page number (default: 1)             |
-| `per_page` | int    | Items per page (default: 20, max: 50)|
-| `type`     | string | Filter by transport type             |
-| `status`   | string | Filter: pending/reviewed/resolved    |
-
----
-
-## 4. Stats
-
-### `GET /api/stats.php`
-
-Returns live-computed statistics for the hero section.
-
+**Sample Response:**
 ```json
 {
   "success": true,
   "data": [
-    { "stat_key": "total_routes",    "stat_value": "12",      "stat_label": "Active Routes" },
-    { "stat_key": "avg_wait_time",   "stat_value": "17.8 min","stat_label": "Avg. Wait Time" },
-    { "stat_key": "total_reports",   "stat_value": "0",       "stat_label": "Reports Filed" },
-    { "stat_key": "delayed_routes",  "stat_value": "7",       "stat_label": "Routes Currently Delayed" }
+    {
+      "name": "Molo Plaza & St. Anne Church",
+      "district": "Molo",
+      "full_address": "San Pedro St. cor. MH Del Pilar St., Molo, Iloilo City",
+      "coordinates": [10.6975, 122.5447],
+      "category": "plaza",
+      "source": "local_iloilo_registry",
+      "waiting_time": 14,
+      "status": "moderate",
+      "puv_types": ["jeepney", "taxi", "tricycle"]
+    }
   ]
 }
 ```
 
-**Front-end elements:** `#hero-stats`, `.stat-card`
-
 ---
 
-## 5. Search (Unified)
+### C. Transit Routing & Map Path (`GET /api/routing.php`)
+Calculates the shortest road distance, driving travel time, GeoJSON polyline for MapTiler rendering, and matches the best Iloilo PUV routes.
 
-### `GET /api/search.php?q=...`
+**Query Parameters:**
+* `origin`: Name or coordinates of departure (e.g. `Jaro Plaza` or `10.7289,122.5583`)
+* `destination`: Name or coordinates of arrival (e.g. `SM City Iloilo` or `10.7138,122.5516`)
+* `type`: Transport mode filter (`all`, `jeepney`, `bus`, `uv`, `tricycle`, `taxi`)
 
-Unified search for the hero search bar.
+**Sample Request:**
+```
+GET /api/routing.php?origin=Jaro+Plaza&destination=SM+City+Iloilo
+```
 
-| Param | Type   | Required | Description                |
-|-------|--------|----------|----------------------------|
-| `q`   | string | Yes      | Search query (min 2 chars) |
-
-**Front-end elements:** `#hero-search-form`, `#hero-search-input`
-
----
-
-## Standard Response Envelope
-
-Every endpoint returns:
+**Sample Response:**
 ```json
 {
   "success": true,
-  "data": "...",
-  "message": "...",
-  "meta": {
-    "timestamp": "2026-11-18T14:30:00Z",
-    "count": 12
+  "data": {
+    "origin": {
+      "name": "Jaro Plaza & Cathedral",
+      "district": "Jaro",
+      "coordinates": [10.7289, 122.5583]
+    },
+    "destination": {
+      "name": "SM City Iloilo Transport Terminal & Overpass",
+      "district": "Mandurriao",
+      "coordinates": [10.7138, 122.5516]
+    },
+    "route_summary": {
+      "distance_km": 2.4,
+      "road_travel_minutes": 5,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [[122.5583, 10.7289], "..."]
+      }
+    },
+    "available_transport_options": [
+      {
+        "route_id": "route-004",
+        "route_name": "Route 4: Ungka Terminal – City Proper via Diversion & SM City",
+        "transport_type": "jeepney",
+        "transport_label": "Modern Jeepney",
+        "transport_icon": "🚐",
+        "estimated_fare": 16.00,
+        "travel_time_minutes": 5,
+        "estimated_wait_minutes": 10,
+        "total_commute_minutes": 15,
+        "status": "normal",
+        "frequency": "Every 5-8 mins"
+      }
+    ]
   }
 }
 ```
 
-For paginated endpoints, `meta` also includes:
-```json
-{
-  "total": 100,
-  "page": 1,
-  "per_page": 20,
-  "total_pages": 5
-}
-```
-
 ---
 
-## HTTP Status Codes
+## 4. How the Front-End Adds the Interactive MapTiler Map
 
-| Code | Meaning                      |
-|------|------------------------------|
-| 200  | Success                      |
-| 201  | Created (report submitted)   |
-| 400  | Bad request / missing params |
-| 404  | Not found                    |
-| 405  | Method not allowed           |
-| 422  | Validation error             |
-| 500  | Server error                 |
+A drop-in helper file [`iloilo-map.js`](file:///C:/Users/renz/Documents/Visual_Code\Projects\hackathon-app\iloilo-map.js) has been provided.
+
+### Step 1: Add Map Container in `index.html`
+Place this `<div>` inside or above `#route-search-section`:
+```html
+<!-- Interactive Iloilo Transit Map -->
+<div id="iloilo-transit-map" style="width: 100%; height: 420px; border-radius: 12px; margin: 20px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.08);"></div>
+
+<!-- Load Map Script -->
+<script src="iloilo-map.js"></script>
+```
+
+### Step 2: Initialize in `script.js`
+In your `DOMContentLoaded` callback:
+```js
+window.addEventListener('DOMContentLoaded', () => {
+  // Initialize Iloilo Map with MapTiler
+  if (window.IloiloTransitMap) {
+    window.iloiloMap = new IloiloTransitMap('iloilo-transit-map');
+    window.iloiloMap.init();
+  }
+});
+```
+
+### Features Enabled Automatically:
+1. **Interactive Streets Map:** MapTiler Street style centered on Iloilo City `[10.7202, 122.5621]`.
+2. **Color-coded Stop Markers:**
+   - 🟢 Green: Normal Wait (< 10 mins)
+   - 🟡 Amber: Moderate Wait (10 - 20 mins)
+   - 🔴 Red: Long Wait / Delayed (> 20 mins)
+3. **Stop Popups:** Shows live wait times, available PUVs, and "From Here" / "To Here" buttons that auto-fill the route search form fields.
+4. **Interactive Routing:** Submitting `#route-search-form` queries `/api/routing.php` and automatically draws the path polyline on the map!
