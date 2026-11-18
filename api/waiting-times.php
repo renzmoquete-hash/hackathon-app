@@ -1,18 +1,14 @@
 <?php
 /**
  * API: Waiting Times
- * 
+ *
  * GET  /api/waiting-times.php              — List all current waiting times
  * GET  /api/waiting-times.php?type=jeepney — Filter by transport type
- * GET  /api/waiting-times.php?id=1         — Get single waiting time by route ID
- * 
- * Front-end integration points:
- *   #waiting-time-container   — Render cards here
- *   .waiting-card             — Each card
- *   data-transport-type       — Filter attribute
- *   data-route-id             — Route identifier
- *   data-status               — Status badge
- *   data-waiting-minutes      — Numeric wait value
+ * GET  /api/waiting-times.php?id=route-001 — Get single record
+ *
+ * Front-end targets:
+ *   #waiting-time-container, .waiting-card
+ *   data-transport-type, data-route-id, data-status, data-waiting-minutes
  */
 
 require_once __DIR__ . '/bootstrap.php';
@@ -21,95 +17,30 @@ if (getMethod() !== 'GET') {
     Response::error('Method not allowed.', 405);
 }
 
-$db = Database::getInstance()->getConnection();
+$store = new JsonStore('routes');
 
-// ── Single record by route ID ────────────────────────────────
-if (isset($_GET['id'])) {
-    $id = (int) $_GET['id'];
-    $stmt = $db->prepare("
-        SELECT
-            wt.id                       AS id,
-            r.route_code                AS route_id,
-            tt.slug                     AS transport_type,
-            tt.label                    AS transport_label,
-            tt.icon                     AS transport_icon,
-            r.route_name                AS route_name,
-            r.origin                    AS origin,
-            r.destination               AS destination,
-            wt.estimated_wait_minutes   AS estimated_wait_minutes,
-            wt.status                   AS status,
-            wt.passenger_count          AS passenger_count,
-            wt.notes                    AS notes,
-            wt.is_demo                  AS is_demo,
-            wt.recorded_at              AS last_updated
-        FROM waiting_times wt
-        JOIN routes r          ON wt.route_id = r.id
-        JOIN transport_types tt ON r.transport_type_id = tt.id
-        WHERE r.id = :id
-        ORDER BY wt.recorded_at DESC
-        LIMIT 1
-    ");
-    $stmt->execute([':id' => $id]);
-    $row = $stmt->fetch();
-
+// ── Single record by ID ──────────────────────────────────────
+if (!empty($_GET['id'])) {
+    $row = $store->find('id', $_GET['id']);
     if (!$row) {
         Response::error('Waiting time not found.', 404);
     }
-
-    $row['is_demo'] = (bool) $row['is_demo'];
     Response::success($row);
 }
 
 // ── List (optionally filtered) ───────────────────────────────
-$where  = ['r.is_active = 1'];
-$params = [];
+$results = $store->all();
 
-// Filter by transport type slug
+// Filter by transport type
 if (!empty($_GET['type']) && $_GET['type'] !== 'all') {
-    $where[]  = 'tt.slug = :type';
-    $params[':type'] = $_GET['type'];
+    $type = $_GET['type'];
+    $results = array_values(array_filter($results, fn($r) => $r['transport_type'] === $type));
 }
 
 // Filter by status
 if (!empty($_GET['status'])) {
-    $where[]  = 'wt.status = :status';
-    $params[':status'] = $_GET['status'];
+    $status = $_GET['status'];
+    $results = array_values(array_filter($results, fn($r) => $r['status'] === $status));
 }
 
-$whereClause = implode(' AND ', $where);
-
-$sql = "
-    SELECT
-        wt.id                       AS id,
-        r.route_code                AS route_id,
-        tt.slug                     AS transport_type,
-        tt.label                    AS transport_label,
-        tt.icon                     AS transport_icon,
-        r.route_name                AS route_name,
-        r.origin                    AS origin,
-        r.destination               AS destination,
-        r.estimated_fare            AS fare,
-        r.estimated_duration_minutes AS duration_minutes,
-        wt.estimated_wait_minutes   AS estimated_wait_minutes,
-        wt.status                   AS status,
-        wt.passenger_count          AS passenger_count,
-        wt.is_demo                  AS is_demo,
-        wt.recorded_at              AS last_updated
-    FROM waiting_times wt
-    JOIN routes r          ON wt.route_id = r.id
-    JOIN transport_types tt ON r.transport_type_id = tt.id
-    WHERE {$whereClause}
-    ORDER BY wt.recorded_at DESC
-";
-
-$stmt = $db->prepare($sql);
-$stmt->execute($params);
-$rows = $stmt->fetchAll();
-
-// Cast booleans
-foreach ($rows as &$row) {
-    $row['is_demo'] = (bool) $row['is_demo'];
-}
-unset($row);
-
-Response::success($rows, 'Waiting times retrieved.', 200, ['count' => count($rows)]);
+Response::success($results, 'Waiting times retrieved.', 200, ['count' => count($results)]);

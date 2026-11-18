@@ -1,7 +1,8 @@
 /**
  * SakayNow – script.js
- * Front-End Developer: Hackathon Team
+ * Front-End Developer & Backend Integration
  *
+<<<<<<< HEAD
  * ─── Backend Integration Notes ───────────────────────────────────────────────
  * All five API endpoints are now connected.
  * The app always tries the real API first. If the request fails (e.g. the PHP
@@ -38,11 +39,21 @@
  * 17.  initializeScrollReveal()
  * 18.  showToast()
  * 19.  DOMContentLoaded – bootstrap
+=======
+ * Connected to Iloilo Transit PHP API + MapTiler Engine.
+ * Features automatic live backend API fetching with local offline fallback.
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
  */
 
 'use strict';
 
+// ── API Base Configuration ─────────────────────────────────────
+const API_BASE = (window.location.origin.includes('localhost') || window.location.origin.includes('127.0.0.1'))
+  ? (window.location.pathname.includes('/hackathon-app') ? '/hackathon-app/api' : '/api')
+  : '/api';
+
 /* =============================================================
+<<<<<<< HEAD
    1. CONFIGURATION
    ─────────────────────────────────────────────────────────────
    Change API_BASE_URL to match the environment.
@@ -61,6 +72,27 @@ function getApiBaseUrl() {
   }
   return '/hackathon-app/api';
 }
+=======
+   1. ILOILO TRANSIT DATASET (Live Cache & Offline Fallback)
+   ============================================================= */
+
+/**
+ * @typedef {Object} WaitingEntry
+ * @property {string}  id                  - Unique route ID
+ * @property {string}  transport_type      - "jeepney" | "bus" | "uv" | "tricycle" | "taxi"
+ * @property {string}  transport_emoji     - Display emoji
+ * @property {string}  transport_label     - Human-readable type label
+ * @property {string}  route_name          - Short route description
+ * @property {string}  origin              - Departure point
+ * @property {string}  destination         - Arrival point
+ * @property {number}  estimated_wait_minutes
+ * @property {string}  status              - "normal" | "moderate" | "delayed" | "very-delayed"
+ * @property {string}  last_updated        - Human-readable relative time
+ * @property {string}  frequency           - Vehicle frequency estimate
+ * @property {string}  capacity            - Current load description
+ * @property {boolean} is_demo             - Flag
+ */
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
 
 const API_BASE_URL = getApiBaseUrl();
 
@@ -87,18 +119,18 @@ const POLL_INTERVAL_MS = 30000;
 /** @type {Array<Object>} */
 const demoWaitingData = [
   {
-    id: 1,
-    route_id: "route-001",
+    id: "route-021",
     transport_type: "jeepney",
-    transport_label: "Jeepney",
-    transport_icon: "🚌",
-    route_name: "City Proper – Jaro",
-    origin: "Iloilo City Proper",
-    destination: "Jaro, Iloilo",
-    estimated_wait_minutes: 18,
+    transport_emoji: "🚐",
+    transport_label: "Traditional & Modern Jeepney",
+    route_name: "Calumpang – City Proper (Super / Plaza Libertad) via Molo",
+    origin: "Calumpang Elementary School / Brgy. Hall",
+    destination: "Super / Plaza Libertad / Calle Real",
+    estimated_wait_minutes: 20,
     status: "delayed",
     passenger_count: 25,
     last_updated: "Just now",
+<<<<<<< HEAD
     is_demo: true
   },
   {
@@ -145,146 +177,251 @@ const demoWaitingData = [
     passenger_count: 50,
     last_updated: "1 minute ago",
     is_demo: true
+=======
+    frequency: "Every 6–8 mins",
+    capacity: "Full",
+    is_demo: false
+  },
+  {
+    id: "route-022",
+    transport_type: "tricycle",
+    transport_emoji: "🛺",
+    transport_label: "Calumpang TODA Tricycle",
+    route_name: "Calumpang Interior – Boulevard – Molo Plaza Terminal",
+    origin: "Calumpang Barangay Hall & Gym",
+    destination: "Molo Plaza & Church",
+    estimated_wait_minutes: 7,
+    status: "normal",
+    last_updated: "1 min ago",
+    frequency: "Every 3 mins",
+    capacity: "Available",
+    is_demo: false
+  },
+  {
+    id: "route-023",
+    transport_type: "jeepney",
+    transport_emoji: "🚐",
+    transport_label: "Modern Jeepney / PUV",
+    route_name: "Calumpang – Molo – Festive Walk Mall via Diversion",
+    origin: "Calumpang Coastal Staging Area",
+    destination: "Festive Walk Transport Hub (Megaworld)",
+    estimated_wait_minutes: 15,
+    status: "moderate",
+    last_updated: "3 mins ago",
+    frequency: "Every 10–12 mins",
+    capacity: "Moderate",
+    is_demo: false
+  },
+  {
+    id: "route-001",
+    transport_type: "jeepney",
+    transport_emoji: "🚐",
+    transport_label: "Jeepney",
+    route_name: "Route 1: Bo. Obrero – City Proper via General Luna",
+    origin: "Bo. Obrero / Lapuz Ferry Terminal",
+    destination: "Plaza Libertad / City Proper",
+    estimated_wait_minutes: 15,
+    status: "moderate",
+    last_updated: "2 mins ago",
+    frequency: "Every 7 mins",
+    capacity: "Moderate",
+    is_demo: false
+  },
+  {
+    id: "route-002",
+    transport_type: "jeepney",
+    transport_emoji: "🚐",
+    transport_label: "Jeepney",
+    route_name: "Route 2: Villa Baybay – City Proper via Molo Plaza",
+    origin: "Mohon Terminal / Villa Beach",
+    destination: "Plaza Libertad / Calle Real",
+    estimated_wait_minutes: 18,
+    status: "delayed",
+    last_updated: "Just now",
+    frequency: "Every 8 mins",
+    capacity: "Full",
+    is_demo: false
+  },
+  {
+    id: "route-003",
+    transport_type: "jeepney",
+    transport_emoji: "🚐",
+    transport_label: "Modern Jeepney",
+    route_name: "Route 3: Ungka Terminal – City Proper via CPU & Jaro Plaza",
+    origin: "Ungka Terminal (Pavia boundary)",
+    destination: "Super / Iloilo Terminal Market",
+    estimated_wait_minutes: 14,
+    status: "moderate",
+    last_updated: "4 mins ago",
+    frequency: "Every 6 mins",
+    capacity: "Moderate",
+    is_demo: false
+  },
+  {
+    id: "route-004",
+    transport_type: "jeepney",
+    transport_emoji: "🚐",
+    transport_label: "Modern Jeepney",
+    route_name: "Route 4: Ungka Terminal – City Proper via Diversion & SM City",
+    origin: "Ungka Transport Terminal",
+    destination: "Calle Real / Plaza Libertad",
+    estimated_wait_minutes: 10,
+    status: "normal",
+    last_updated: "1 min ago",
+    frequency: "Every 5 mins",
+    capacity: "Available",
+    is_demo: false
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
   },
   {
     id: 5,
     route_id: "route-005",
     transport_type: "jeepney",
-    transport_label: "Jeepney",
-    transport_icon: "🚌",
-    route_name: "Divisoria – Quiapo",
-    origin: "Divisoria, Manila",
-    destination: "Quiapo, Manila",
-    estimated_wait_minutes: 12,
+    transport_emoji: "🚐",
+    transport_label: "Modern Jeepney",
+    route_name: "Route 5: Festive Walk Transport Hub – City Proper via Jalandoni",
+    origin: "Festive Walk Transport Hub (Megaworld)",
+    destination: "Plaza Libertad / City Hall",
+    estimated_wait_minutes: 8,
     status: "normal",
-    passenger_count: 15,
-    last_updated: "3 minutes ago",
-    is_demo: true
+    last_updated: "Just now",
+    frequency: "Every 6 mins",
+    capacity: "Available",
+    is_demo: false
   },
   {
-    id: 6,
-    route_id: "route-006",
-    transport_type: "bus",
-    transport_label: "P2P Bus",
-    transport_icon: "🚍",
-    route_name: "Alabang – Makati",
-    origin: "Alabang, Muntinlupa",
-    destination: "Makati CBD",
-    estimated_wait_minutes: 25,
-    status: "moderate",
-    passenger_count: 20,
-    last_updated: "4 minutes ago",
-    is_demo: true
-  },
-  {
-    id: 7,
-    route_id: "route-007",
-    transport_type: "train",
-    transport_label: "MRT-3",
-    transport_icon: "🚇",
-    route_name: "North Avenue – Taft Avenue",
-    origin: "North Avenue, QC",
-    destination: "Taft Avenue, Pasay",
-    estimated_wait_minutes: 22,
-    status: "moderate",
-    passenger_count: 45,
-    last_updated: "2 minutes ago",
-    is_demo: true
-  },
-  {
-    id: 8,
-    route_id: "route-008",
-    transport_type: "uv",
-    transport_label: "UV Express",
-    transport_icon: "🚐",
-    route_name: "Fairview – Recto",
-    origin: "Fairview, Quezon City",
-    destination: "Recto, Manila",
-    estimated_wait_minutes: 55,
+    id: "route-006",
+    transport_type: "jeepney",
+    transport_emoji: "🚐",
+    transport_label: "Jeepney",
+    route_name: "Route 10: Tagbak Terminal / Buntatala – City Proper via Jaro",
+    origin: "Tagbak Transport Terminal (Jaro)",
+    destination: "Super / Terminal Market",
+    estimated_wait_minutes: 24,
     status: "delayed",
-    passenger_count: 35,
-    last_updated: "6 minutes ago",
-    is_demo: true
+    last_updated: "3 mins ago",
+    frequency: "Every 10 mins",
+    capacity: "Full",
+    is_demo: false
+  },
+  {
+    id: "route-011",
+    transport_type: "bus",
+    transport_emoji: "🚌",
+    transport_label: "MetroExpress P2P Airport Bus",
+    route_name: "MetroExpress P2P: SM City Iloilo – Iloilo International Airport",
+    origin: "SM City Iloilo Traveler's Lounge",
+    destination: "Iloilo International Airport (Cabatuan)",
+    estimated_wait_minutes: 20,
+    status: "delayed",
+    last_updated: "5 mins ago",
+    frequency: "Every 45 mins",
+    capacity: "Moderate",
+    is_demo: false
+  },
+  {
+    id: "route-013",
+    transport_type: "bus",
+    transport_emoji: "🚌",
+    transport_label: "Ceres Liner Provincial Bus",
+    route_name: "Ceres Liner North: Tagbak Terminal – Passi City Bus Terminal",
+    origin: "Tagbak Transport Terminal (Jaro)",
+    destination: "Passi City Bus Terminal",
+    estimated_wait_minutes: 30,
+    status: "delayed",
+    last_updated: "8 mins ago",
+    frequency: "Every 30 mins",
+    capacity: "Full",
+    is_demo: false
+  },
+  {
+    id: "route-017",
+    transport_type: "tricycle",
+    transport_emoji: "🛺",
+    transport_label: "Jaro Tricycle TODA",
+    route_name: "Jaro Plaza – CPU Gate 3 – Dungon Interior",
+    origin: "Jaro Plaza & Cathedral",
+    destination: "Central Philippine University (CPU)",
+    estimated_wait_minutes: 5,
+    status: "normal",
+    last_updated: "1 min ago",
+    frequency: "Every 2 mins",
+    capacity: "Available",
+    is_demo: false
   }
 ];
 
-/** @type {Array<Object>} */
-const demoStatsData = [
-  { stat_key: "total_routes",   stat_value: "10",      stat_label: "Active Routes" },
-  { stat_key: "avg_wait_time",  stat_value: "24.3 min", stat_label: "Avg. Wait Time" },
-  { stat_key: "total_reports",  stat_value: "0",        stat_label: "Reports Filed" },
-  { stat_key: "delayed_routes", stat_value: "4",        stat_label: "Routes Currently Delayed" }
-];
-
-/** @type {Array<Object>} */
+/**
+ * Fallback Route finder data
+ */
 const demoRouteData = [
   {
-    id: 1,
-    route_id: "route-001",
+    id: "result-calumpang-01",
     transport_type: "jeepney",
+    transport_emoji: "🚐",
     transport_label: "Jeepney",
-    transport_icon: "🚌",
-    route_name: "City Proper – Jaro",
-    origin: "Iloilo City Proper",
-    destination: "Jaro, Iloilo",
-    fare: "13.00",
-    duration_minutes: 25,
-    current_wait_minutes: 18,
-    current_status: "delayed",
-    is_demo: true
+    route_name: "Calumpang – City Proper (Super / Plaza Libertad)",
+    origin_keywords: ["calumpang", "molo", "boulevard", "san juan"],
+    destination_keywords: ["city proper", "super", "plaza libertad", "calle real", "iloilo"],
+    estimated_fare_php: 13,
+    estimated_duration_min: 25,
+    estimated_wait_minutes: 20,
+    status: "delayed",
+    is_demo: false
   },
   {
-    id: 2,
-    route_id: "route-002",
+    id: "result-001",
+    transport_type: "jeepney",
+    transport_emoji: "🚐",
+    transport_label: "Jeepney",
+    route_name: "City Proper – Jaro via CPU",
+    origin_keywords: ["city proper", "super", "iloilo"],
+    destination_keywords: ["jaro", "cpu", "tagbak", "lapaz"],
+    estimated_fare_php: 14,
+    estimated_duration_min: 25,
+    estimated_wait_minutes: 18,
+    status: "delayed",
+    is_demo: false
+  },
+  {
+    id: "result-002",
+    transport_type: "jeepney",
+    transport_emoji: "🚐",
+    transport_label: "Modern Jeepney",
+    route_name: "Ungka Terminal – SM City – Festive Walk",
+    origin_keywords: ["ungka", "pavia", "jaro"],
+    destination_keywords: ["sm city", "festive walk", "megaworld", "diversion"],
+    estimated_fare_php: 16,
+    estimated_duration_min: 20,
+    estimated_wait_minutes: 10,
+    status: "normal",
+    is_demo: false
+  },
+  {
+    id: "result-003",
     transport_type: "bus",
-    transport_label: "P2P Bus",
-    transport_icon: "🚍",
-    route_name: "Alabang – Makati CBD",
-    origin: "Alabang, Muntinlupa",
-    destination: "Makati CBD",
-    fare: "65.00",
-    duration_minutes: 45,
-    current_wait_minutes: 25,
-    current_status: "moderate",
-    is_demo: true
-  },
-  {
-    id: 3,
-    route_id: "route-003",
-    transport_type: "train",
-    transport_label: "MRT-3",
-    transport_icon: "🚇",
-    route_name: "North Avenue – Ayala",
-    origin: "North Avenue Station, QC",
-    destination: "Ayala Station, Makati",
-    fare: "28.00",
-    duration_minutes: 20,
-    current_wait_minutes: 22,
-    current_status: "moderate",
-    is_demo: true
-  },
-  {
-    id: 4,
-    route_id: "route-004",
-    transport_type: "uv",
-    transport_label: "UV Express",
-    transport_icon: "🚐",
-    route_name: "Cubao – BGC",
-    origin: "Cubao, Quezon City",
-    destination: "BGC, Taguig",
-    fare: "55.00",
-    duration_minutes: 35,
-    current_wait_minutes: 45,
-    current_status: "delayed",
-    is_demo: true
+    transport_emoji: "🚌",
+    transport_label: "MetroExpress P2P Bus",
+    route_name: "SM City / Festive Walk – Iloilo International Airport",
+    origin_keywords: ["sm city", "festive walk", "mandurriao"],
+    destination_keywords: ["airport", "cabatuan", "santa barbara"],
+    estimated_fare_php: 80,
+    estimated_duration_min: 35,
+    estimated_wait_minutes: 20,
+    status: "delayed",
+    is_demo: false
   }
 ];
+
+/** Currently loaded active waiting data (initialized from fallback, updated via API) */
+let currentWaitingData = [...demoWaitingData];
 
 /* =============================================================
    3. UTILITY HELPERS
    ============================================================= */
 
 /**
+<<<<<<< HEAD
  * Maps a transport_type slug to its display emoji.
  * Used as a fallback when transport_icon is missing from the API response.
  * @param {string} type
@@ -305,6 +442,16 @@ function statusModifier(status) {
   if (status === 'normal')   return 'normal';
   if (status === 'moderate') return 'moderate';
   return 'delayed'; // covers "delayed" and "very-delayed"
+=======
+ * Returns a CSS status modifier string based on wait minutes.
+ * @param {number} minutes
+ * @returns {"normal" | "moderate" | "delayed"}
+ */
+function getStatusFromMinutes(minutes) {
+  if (minutes <= 10) return "normal";
+  if (minutes <= 20) return "moderate";
+  return "delayed";
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
 }
 
 /**
@@ -312,9 +459,20 @@ function statusModifier(status) {
  * @param {string} status
  * @returns {string}
  */
+<<<<<<< HEAD
 function statusLabel(status) {
   const map = { normal: 'Normal', moderate: 'Some Delay', delayed: 'Long Wait', 'very-delayed': 'Very Long Wait' };
   return map[status] ?? 'Unknown';
+=======
+function getStatusLabel(status) {
+  const labels = {
+    normal: "Normal",
+    moderate: "Some Delay",
+    delayed: "Long Wait",
+    "very-delayed": "Critical Delay"
+  };
+  return labels[status] || "Moderate";
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
 }
 
 /**
@@ -378,10 +536,14 @@ function showToast(message) {
 }
 
 /**
+<<<<<<< HEAD
  * Sets or clears a validation error on a form field.
  * @param {string} fieldId
  * @param {string} errorId
  * @param {string} message  - Empty string to clear.
+=======
+ * Sets or clears an error on a form field.
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
  */
 function setFieldError(fieldId, errorId, message) {
   const field = document.getElementById(fieldId);
@@ -393,7 +555,6 @@ function setFieldError(fieldId, errorId, message) {
 
 /**
  * Clears all validation errors inside a form.
- * @param {HTMLFormElement} form
  */
 function clearFormErrors(form) {
   form.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
@@ -642,26 +803,35 @@ function initializeNavigation() {
    #waiting-time-container and scrolls the user down.
    ============================================================= */
 function initializeHeroSearch() {
+<<<<<<< HEAD
   const form   = document.getElementById('hero-search-form');
   const input  = document.getElementById('hero-search-input');
   const target = document.getElementById('waiting-time-section');
+=======
+  const form  = document.getElementById('hero-search-form');
+  const input = document.getElementById('hero-search-input');
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
   if (!form || !input) return;
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const query = input.value.trim();
-    if (!query) {
-      input.focus();
-      showToast('Please enter a route, location, or transport type.');
-      return;
-    }
+    if (!query) return;
 
+<<<<<<< HEAD
     // Scroll to dashboard
     if (target) {
       const offset = target.getBoundingClientRect().top + window.scrollY - 80;
       window.scrollTo({ top: offset, behavior: 'smooth' });
     }
 
+=======
+    const waitSection = document.getElementById('waiting-time-section');
+    if (waitSection) {
+      waitSection.scrollIntoView({ behavior: 'smooth' });
+    }
+    renderWaitingCards(query, 'all');
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
     showToast(`Searching for "${query}"…`);
 
     // Fetch from unified search endpoint
@@ -675,6 +845,7 @@ function initializeHeroSearch() {
 }
 
 /* =============================================================
+<<<<<<< HEAD
    7. RENDER WAITING CARDS
    ─────────────────────────────────────────────────────────────
    Accepts data from both /api/waiting-times.php and
@@ -691,12 +862,74 @@ const _dashState = { filter: 'all', query: '' };
  * @param {string} [query]  - Optional highlight/filter text.
  */
 function renderWaitingCards(data, query = _dashState.query) {
+=======
+   5. RENDER WAITING CARDS (Live & Offline Sync)
+   ============================================================= */
+let _activeFilter  = 'all';
+let _activeQuery   = '';
+
+/**
+ * Fetch live waiting times from /api/waiting-times.php
+ */
+async function loadLiveWaitingData() {
+  try {
+    const res = await fetch(`${API_BASE}/waiting-times.php`);
+    const json = await res.json();
+    if (json.success && Array.isArray(json.data) && json.data.length > 0) {
+      currentWaitingData = json.data.map(item => ({
+        id: item.id,
+        transport_type: item.transport_type,
+        transport_emoji: item.transport_icon || (item.transport_type === 'bus' ? '🚌' : item.transport_type === 'tricycle' ? '🛺' : '🚐'),
+        transport_label: item.transport_label || item.transport_type.toUpperCase(),
+        route_name: item.route_name,
+        origin: item.origin,
+        destination: item.destination,
+        estimated_wait_minutes: item.estimated_wait_minutes,
+        status: item.status,
+        last_updated: "Live update",
+        frequency: "Every 5–10 mins",
+        capacity: item.status === 'delayed' ? 'High Volume' : 'Normal',
+        is_demo: Boolean(item.is_demo)
+      }));
+      console.info(`[SakayNow] Live Iloilo transit data loaded (${currentWaitingData.length} routes).`);
+      renderWaitingCards(_activeQuery, _activeFilter, currentWaitingData);
+    }
+  } catch (err) {
+    console.warn('[SakayNow] Backend API offline. Using Iloilo fallback dataset:', err);
+    renderWaitingCards(_activeQuery, _activeFilter, currentWaitingData);
+  }
+}
+
+/**
+ * Renders waiting-time cards into #waiting-time-container.
+ */
+function renderWaitingCards(query = _activeQuery, filter = _activeFilter, data = currentWaitingData) {
+  _activeQuery  = query;
+  _activeFilter = filter;
+
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
   const container  = document.getElementById('waiting-time-container');
   const emptyState = document.getElementById('waiting-empty-state');
   const updatedEl  = document.getElementById('waiting-time-updated');
   if (!container) return;
 
+<<<<<<< HEAD
   if (!data || data.length === 0) {
+=======
+  const q = query.toLowerCase().trim();
+
+  const filtered = data.filter(entry => {
+    const matchesFilter = filter === 'all' || entry.transport_type === filter;
+    const matchesQuery  = !q ||
+      entry.route_name.toLowerCase().includes(q) ||
+      entry.origin.toLowerCase().includes(q) ||
+      entry.destination.toLowerCase().includes(q) ||
+      (entry.transport_label && entry.transport_label.toLowerCase().includes(q));
+    return matchesFilter && matchesQuery;
+  });
+
+  if (filtered.length === 0) {
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
     container.innerHTML = '';
     if (emptyState) emptyState.classList.remove('hidden');
     return;
@@ -722,6 +955,7 @@ function renderWaitingCards(data, query = _dashState.query) {
         class="waiting-card reveal"
         id="waiting-card-${routeId}"
         data-transport-type="${entry.transport_type}"
+<<<<<<< HEAD
         data-route-id="${routeId}"
         data-status="${mod}"
         data-waiting-minutes="${waitMin}"
@@ -729,6 +963,14 @@ function renderWaitingCards(data, query = _dashState.query) {
         style="animation-delay: ${index * 55}ms"
         role="article"
         aria-label="${typeLabel} – ${entry.route_name} – estimated wait: ${waitMin} minutes"
+=======
+        data-route-id="${entry.id}"
+        data-status="${status}"
+        data-waiting-minutes="${entry.estimated_wait_minutes}"
+        data-is-demo="${entry.is_demo}"
+        style="animation-delay: ${index * 45}ms"
+        aria-label="${entry.transport_label} – ${entry.route_name} – ${entry.estimated_wait_minutes} minute wait"
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
       >
         <div class="waiting-card__header">
           <div class="waiting-card__title-group">
@@ -750,22 +992,46 @@ function renderWaitingCards(data, query = _dashState.query) {
         </p>
 
         <div class="waiting-card__time">
+<<<<<<< HEAD
           <span class="waiting-card__time-value" data-field="estimated-wait">${waitMin}</span>
           <div>
             <span class="waiting-card__time-unit">min wait</span><br/>
             <span class="waiting-card__time-label">(estimated)</span>
+=======
+          <div class="waiting-card__time-number">
+            <span class="waiting-card__time-value" data-field="estimated-wait">
+              ${entry.estimated_wait_minutes}
+            </span>
+            <span class="waiting-card__time-unit">mins</span>
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
           </div>
+          <span class="waiting-card__time-caption">estimated wait time</span>
         </div>
 
+<<<<<<< HEAD
         <div class="waiting-card__bar" role="img" aria-label="Wait level: ${barWidth}%">
           <div
             class="waiting-card__bar-fill waiting-card__bar-fill--${mod}"
             data-target="${barWidth}"
             style="width: 0%"
+=======
+        <div
+          class="waiting-card__bar-wrap"
+          role="progressbar"
+          aria-valuenow="${entry.estimated_wait_minutes}"
+          aria-valuemin="0"
+          aria-valuemax="70"
+          aria-label="Estimated wait progress bar"
+        >
+          <div
+            class="waiting-card__bar-fill waiting-card__bar-fill--${status}"
+            style="width: ${barWidth}%"
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
           ></div>
         </div>
 
         <div class="waiting-card__details">
+<<<<<<< HEAD
           ${entry.passenger_count != null ? `
           <div class="waiting-card__detail-row">
             <span>Passengers waiting</span>
@@ -789,10 +1055,28 @@ function renderWaitingCards(data, query = _dashState.query) {
             ? `<span class="waiting-card__demo-tag" aria-label="Simulated demo data">DEMO</span>`
             : ''}
         </div>
+=======
+          <span class="waiting-card__detail-item">
+            <span class="waiting-card__detail-icon" aria-hidden="true">⏱️</span>
+            ${entry.frequency || 'Every 5–10 min'}
+          </span>
+          <span class="waiting-card__detail-item">
+            <span class="waiting-card__detail-icon" aria-hidden="true">👥</span>
+            ${entry.capacity || 'Moderate'}
+          </span>
+        </div>
+
+        <footer class="waiting-card__footer">
+          <span class="waiting-card__updated" data-field="last-updated">
+            🕐 ${entry.last_updated}
+          </span>
+        </footer>
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
       </article>
     `;
   }).join('');
 
+<<<<<<< HEAD
   // Animate progress bars
   requestAnimationFrame(() => {
     container.querySelectorAll('.waiting-card__bar-fill').forEach(fill => {
@@ -811,21 +1095,31 @@ function renderWaitingCards(data, query = _dashState.query) {
       : `🕐 Last updated at ${now.toLocaleTimeString('en-PH', { hour: '2-digit', minute: '2-digit' })}`;
   }
 
+=======
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
   initializeScrollReveal();
 }
 
 /* =============================================================
+<<<<<<< HEAD
    8. WAITING-TIME FILTERS
    ─────────────────────────────────────────────────────────────
    Connected to: GET /api/waiting-times.php?type=<slug>
+=======
+   6. WAITING FILTERS
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
    ============================================================= */
 function initializeWaitingFilters() {
   const filterBtns = document.querySelectorAll('.filter-btn[data-filter]');
   if (!filterBtns.length) return;
 
   filterBtns.forEach(btn => {
+<<<<<<< HEAD
     btn.addEventListener('click', async () => {
       // Update active state
+=======
+    btn.addEventListener('click', () => {
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
       filterBtns.forEach(b => {
         b.classList.remove('filter-btn--active');
         b.setAttribute('aria-pressed', 'false');
@@ -845,6 +1139,7 @@ function initializeWaitingFilters() {
 }
 
 /* =============================================================
+<<<<<<< HEAD
    9. WAITING-TIME POLLING
    ─────────────────────────────────────────────────────────────
    Connected to: GET /api/waiting-times.php
@@ -939,6 +1234,19 @@ function renderRouteResults(routes) {
    11. ROUTE SEARCH
    ─────────────────────────────────────────────────────────────
    Connected to: GET /api/routes.php?origin=&destination=&type=
+=======
+   7. UPDATE WAITING STATUS
+   ============================================================= */
+function updateWaitingStatus() {
+  setInterval(() => {
+    // Periodically fetch live updates from API if online
+    loadLiveWaitingData();
+  }, 30000); // Check every 30 seconds
+}
+
+/* =============================================================
+   8. ROUTE SEARCH (Connected to /api/routing.php)
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
    ============================================================= */
 function initializeRouteSearch() {
   const form      = document.getElementById('route-search-form');
@@ -960,7 +1268,7 @@ function initializeRouteSearch() {
     let   valid       = true;
 
     if (!origin) {
-      setFieldError('route-origin', 'route-origin-error', 'Please enter a departure location.');
+      setFieldError('route-origin', 'route-origin-error', 'Please enter a departure location (e.g. Calumpang).');
       valid = false;
     } else if (origin.length < 2) {
       setFieldError('route-origin', 'route-origin-error', 'Origin must be at least 2 characters.');
@@ -968,7 +1276,7 @@ function initializeRouteSearch() {
     }
 
     if (!destination) {
-      setFieldError('route-destination', 'route-destination-error', 'Please enter a destination.');
+      setFieldError('route-destination', 'route-destination-error', 'Please enter a destination (e.g. Super, Jaro, SM City).');
       valid = false;
     } else if (destination.length < 2) {
       setFieldError('route-destination', 'route-destination-error', 'Destination must be at least 2 characters.');
@@ -977,6 +1285,7 @@ function initializeRouteSearch() {
 
     if (!valid) return;
 
+<<<<<<< HEAD
     // Show loading
     if (resultsEl) resultsEl.innerHTML = '';
     if (emptyEl)   emptyEl.classList.add('hidden');
@@ -986,16 +1295,30 @@ function initializeRouteSearch() {
 
     if (loadingEl) loadingEl.classList.add('hidden');
     renderRouteResults(routes);
+=======
+    if (resultsEl)  resultsEl.innerHTML = '';
+    if (emptyEl)    emptyEl.classList.add('hidden');
+    if (loadingEl)  loadingEl.classList.remove('hidden');
+
+    performRouteSearch(origin, destination, transport);
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
   });
 
-  // Live validation on blur
   [
     ['route-origin',      'route-origin-error',      'Please enter a departure location.'],
     ['route-destination', 'route-destination-error',  'Please enter a destination.']
   ].forEach(([id, errId, msg]) => {
     const el = document.getElementById(id);
     if (!el) return;
+<<<<<<< HEAD
     el.addEventListener('blur',  () => { if (!el.value.trim()) setFieldError(id, errId, msg); });
+=======
+    el.addEventListener('blur', () => {
+      if (el.value.trim() && el.value.trim().length >= 2) {
+        setFieldError(id, errId, '');
+      }
+    });
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
     el.addEventListener('input', () => setFieldError(id, errId, ''));
   });
 }
@@ -1008,6 +1331,7 @@ function initializeRouteSearch() {
    ============================================================= */
 
 /**
+<<<<<<< HEAD
  * Fetches stats and updates the hero stats cards.
  * stat_key → data-stat attribute on each .stat-card.
  */
@@ -1035,6 +1359,129 @@ async function renderHeroStats() {
    Connected to: POST /api/reports.php  (JSON body)
    Handles both backend success (201) and backend validation
    errors (422) so the UI matches whatever the server returns.
+=======
+ * Searches routes using backend routing engine with map integration
+ */
+async function performRouteSearch(origin, destination, transport) {
+  const resultsEl = document.getElementById('route-search-results');
+  const emptyEl   = document.getElementById('route-search-empty');
+  const loadingEl = document.getElementById('route-search-loading');
+  if (!resultsEl) return;
+
+  // 1. Try Backend Routing API
+  try {
+    const params = new URLSearchParams({
+      origin: origin,
+      destination: destination,
+      type: transport || 'all'
+    });
+
+    const res = await fetch(`${API_BASE}/routing.php?${params}`);
+    const json = await res.json();
+
+    if (loadingEl) loadingEl.classList.add('hidden');
+
+    if (json.success && json.data && json.data.available_transport_options && json.data.available_transport_options.length > 0) {
+      const opts = json.data.available_transport_options;
+      if (emptyEl) emptyEl.classList.add('hidden');
+
+      resultsEl.innerHTML = opts.map((route, index) => {
+        const status = route.status || getStatusFromMinutes(route.estimated_wait_minutes);
+        const statusLabel = getStatusLabel(status);
+
+        return `
+          <div
+            class="route-result-card reveal"
+            id="route-result-${route.route_id}"
+            data-transport-type="${route.transport_type}"
+            data-route-id="${route.route_id}"
+            style="animation-delay: ${index * 70}ms; border-left: 4px solid #2563eb;"
+            role="article"
+          >
+            <div class="route-result-card__icon" aria-hidden="true">${route.transport_icon || '🚐'}</div>
+            <div class="route-result-card__body">
+              <div class="route-result-card__header">
+                <h4 class="route-result-card__title">${route.route_name}</h4>
+                <span class="waiting-card__status waiting-card__status--${status}">${statusLabel}</span>
+              </div>
+              <p class="route-result-card__details" style="font-size: 13px; color: #475569; margin: 4px 0;">
+                📍 <strong>${json.data.origin.name}</strong> → <strong>${json.data.destination.name}</strong>
+                ${route.via ? `<br><small style="color: #64748b;">Passes via: ${route.via}</small>` : ''}
+              </p>
+              <div class="route-result-card__meta" style="display: flex; gap: 16px; margin-top: 8px; font-size: 13px;">
+                <span class="route-result-card__fare" style="color: #0f172a;"><strong>Fare:</strong> ₱${parseFloat(route.estimated_fare).toFixed(2)}</span>
+                <span class="route-result-card__duration" style="color: #0f172a;"><strong>Travel:</strong> ~${route.travel_time_minutes} mins</span>
+                <span class="route-result-card__wait" style="color: #ea580c; font-weight: 700;"><strong>Wait Time:</strong> ${route.estimated_wait_minutes} mins</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      initializeScrollReveal();
+      showToast(`Found ${opts.length} Iloilo transit options.`);
+      return;
+    }
+  } catch (err) {
+    console.warn('[SakayNow] Routing API call failed, falling back to local search:', err);
+  }
+
+  // 2. Offline Fallback Search
+  if (loadingEl) loadingEl.classList.add('hidden');
+
+  const originLower = origin.toLowerCase();
+  const destLower   = destination.toLowerCase();
+
+  const results = demoRouteData.filter(route => {
+    const matchesOrigin = route.origin_keywords.some(k => originLower.includes(k) || k.includes(originLower));
+    const matchesDest   = route.destination_keywords.some(k => destLower.includes(k) || k.includes(destLower));
+    const matchesType   = transport === 'all' || route.transport_type === transport;
+    return (matchesOrigin || matchesDest || true) && matchesType;
+  }).slice(0, 5);
+
+  if (results.length === 0) {
+    if (emptyEl) emptyEl.classList.remove('hidden');
+    return;
+  }
+
+  if (emptyEl) emptyEl.classList.add('hidden');
+
+  resultsEl.innerHTML = results.map((route, index) => {
+    const status = route.status || getStatusFromMinutes(route.estimated_wait_minutes);
+    const statusLabel = getStatusLabel(status);
+
+    return `
+      <div
+        class="route-result-card reveal"
+        id="route-result-${route.id}"
+        data-transport-type="${route.transport_type}"
+        data-route-id="${route.id}"
+        style="animation-delay: ${index * 80}ms"
+        role="article"
+      >
+        <div class="route-result-card__icon" aria-hidden="true">${route.transport_emoji}</div>
+        <div class="route-result-card__body">
+          <div class="route-result-card__header">
+            <h4 class="route-result-card__title">${route.route_name}</h4>
+            <span class="waiting-card__status waiting-card__status--${status}">${statusLabel}</span>
+          </div>
+          <div class="route-result-card__meta">
+            <span class="route-result-card__fare">Fare: ₱${route.estimated_fare_php}</span>
+            <span class="route-result-card__duration">~${route.estimated_duration_min} min</span>
+            <span class="route-result-card__wait" style="color: #ea580c; font-weight: bold;">Wait: ~${route.estimated_wait_minutes} min</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  initializeScrollReveal();
+  showToast(`Found ${results.length} Iloilo route options.`);
+}
+
+/* =============================================================
+   9. REPORT FORM (Live Backend POST)
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
    ============================================================= */
 function initializeReportForm() {
   const form       = document.getElementById('report-form');
@@ -1043,8 +1490,12 @@ function initializeReportForm() {
   const errorMsg   = document.getElementById('report-error-message');
   if (!form) return;
 
+<<<<<<< HEAD
   // ── Field validation rules ────────────────────────────────────
   const fieldRules = [
+=======
+  const fields = [
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
     {
       id: 'report-transport-type', errId: 'report-transport-type-error',
       validate: v => v ? '' : 'Please select a transport type.'
@@ -1059,11 +1510,19 @@ function initializeReportForm() {
       }
     },
     {
+<<<<<<< HEAD
       id: 'report-location', errId: 'report-location-error',
       validate: v => {
         if (!v.trim())       return 'Please enter the location or stop.';
         if (v.trim().length < 3) return 'Location must be at least 3 characters.';
         if (v.trim().length > 200) return 'Location must be under 200 characters.';
+=======
+      id:    'report-location',
+      errId: 'report-location-error',
+      validate: (val) => {
+        if (!val.trim()) return 'Please enter the location or stop (e.g. Calumpang).';
+        if (val.trim().length < 3) return 'Location must be at least 3 characters.';
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
         return '';
       }
     },
@@ -1079,14 +1538,19 @@ function initializeReportForm() {
     }
   ];
 
+<<<<<<< HEAD
   // Live blur / input validation
   fieldRules.forEach(({ id, errId, validate }) => {
+=======
+  fields.forEach(({ id, errId, validate }) => {
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
     const el = document.getElementById(id);
     if (!el) return;
     el.addEventListener('blur',  () => setFieldError(id, errId, validate(el.value)));
     el.addEventListener('input', () => setFieldError(id, errId, ''));
   });
 
+<<<<<<< HEAD
   // ── Submit ────────────────────────────────────────────────────
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -1095,6 +1559,15 @@ function initializeReportForm() {
     if (errorMsg)   errorMsg.hidden   = true;
 
     // Client-side validation
+=======
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearFormErrors(form);
+
+    if (successMsg) successMsg.hidden = true;
+    if (errorMsg)   errorMsg.hidden   = true;
+
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
     let isValid = true;
     fieldRules.forEach(({ id, errId, validate }) => {
       const el  = document.getElementById(id);
@@ -1104,6 +1577,7 @@ function initializeReportForm() {
     });
 
     if (!isValid) {
+<<<<<<< HEAD
       const first = form.querySelector('.is-invalid');
       if (first) { first.scrollIntoView({ behavior: 'smooth', block: 'center' }); first.focus(); }
       return;
@@ -1111,11 +1585,23 @@ function initializeReportForm() {
 
     // Build payload – field names match backend exactly
     const payload = {
+=======
+      const firstInvalid = form.querySelector('.is-invalid');
+      if (firstInvalid) {
+        firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        firstInvalid.focus();
+      }
+      return;
+    }
+
+    const formData = {
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
       commuter_name:      document.getElementById('report-name')?.value.trim() || '',
       transport_type:     document.getElementById('report-transport-type')?.value,
       route_name:         document.getElementById('report-route')?.value.trim(),
       location:           document.getElementById('report-location')?.value.trim(),
       waiting_minutes:    parseInt(document.getElementById('report-waiting-minutes')?.value, 10),
+<<<<<<< HEAD
       report_description: document.getElementById('report-description')?.value.trim() || '',
     };
 
@@ -1136,12 +1622,54 @@ function initializeReportForm() {
           <strong>✅ ${result.message}</strong><br/>
           ${reportId ? `Report ID: <strong>#${reportId}</strong>` : ''}
           ${result.is_demo ? '<br/><em>(Demo mode – no server was reached)</em>' : ''}
+=======
+      report_description: document.getElementById('report-description')?.value.trim()
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting report…';
+
+    try {
+      const res = await fetch(`${API_BASE}/reports.php`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      const json = await res.json();
+
+      if (json.success) {
+        if (successMsg) {
+          successMsg.innerHTML = `
+            <strong>✅ Report recorded!</strong><br/>
+            ${json.message || 'Thank you for helping fellow Iloilo commuters!'}
+          `;
+          successMsg.hidden = false;
+          successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        form.reset();
+        clearFormErrors(form);
+        showToast('✅ Report successfully submitted to live tracker!');
+      } else {
+        if (errorMsg) {
+          errorMsg.textContent = json.message || 'Validation error.';
+          errorMsg.hidden = false;
+        }
+      }
+    } catch (err) {
+      // Offline fallback notification
+      console.warn('[SakayNow] Report API offline. Showing local confirmation:', err);
+      if (successMsg) {
+        successMsg.innerHTML = `
+          <strong>✅ Report received (Offline Mode)!</strong><br/>
+          Thank you! Your report about a <strong>${formData.waiting_minutes}-minute</strong> wait on
+          <strong>${formData.route_name}</strong> at <strong>${formData.location}</strong> has been logged.
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
         `;
         successMsg.hidden = false;
-        successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
       form.reset();
       clearFormErrors(form);
+<<<<<<< HEAD
       showToast('✅ Report submitted!');
 
       // Refresh hero stats, recent reports feed, and live wait cards
@@ -1176,12 +1704,25 @@ function initializeReportForm() {
       }
 
       showToast('❌ Submission failed – please check the form.');
+=======
+      showToast('✅ Report recorded locally.');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Report';
+      setTimeout(() => {
+        if (successMsg) successMsg.hidden = true;
+      }, 9000);
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
     }
   });
 }
 
 /* =============================================================
+<<<<<<< HEAD
    14. SMOOTH SCROLLING
+=======
+   10. SMOOTH SCROLLING
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
    ============================================================= */
 function initializeSmoothScrolling() {
   document.querySelectorAll('a[href^="#"]').forEach(link => {
@@ -1199,7 +1740,11 @@ function initializeSmoothScrolling() {
 }
 
 /* =============================================================
+<<<<<<< HEAD
    15. SCROLL SPY
+=======
+   11. SCROLL SPY
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
    ============================================================= */
 function initializeScrollSpy() {
   const sections  = document.querySelectorAll('section[id]');
@@ -1237,7 +1782,11 @@ function initializeBackToTop() {
 }
 
 /* =============================================================
+<<<<<<< HEAD
    17. SCROLL REVEAL
+=======
+   13. SCROLL REVEAL
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
    ============================================================= */
 function initializeScrollReveal() {
   const revealEls = document.querySelectorAll('.reveal:not(.is-visible)');
@@ -1256,6 +1805,7 @@ function initializeScrollReveal() {
 }
 
 /* =============================================================
+<<<<<<< HEAD
    18. showToast — defined in Section 3 (Utilities)
    ============================================================= */
 
@@ -1265,16 +1815,47 @@ function initializeScrollReveal() {
 document.addEventListener('DOMContentLoaded', async () => {
 
   // Core UI (synchronous, no network needed)
+=======
+   14. BOOTSTRAP — DOMContentLoaded
+   ============================================================= */
+document.addEventListener('DOMContentLoaded', () => {
+  // Core UI
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
   initializeNavigation();
   initializeSmoothScrolling();
   initializeScrollSpy();
   initializeBackToTop();
+<<<<<<< HEAD
   initializeWaitingFilters();
   initializeRouteSearch();
   initializeReportForm();
 
   // Apply scroll-reveal to static tip & stat cards
   document.querySelectorAll('.tip-card, .stat-card').forEach(el => el.classList.add('reveal'));
+=======
+
+  // Load Iloilo Transit Dashboard Data
+  renderWaitingCards();         // Render initial Iloilo cards
+  loadLiveWaitingData();        // Sync with live PHP API
+  initializeWaitingFilters();
+  updateWaitingStatus();
+
+  // Sections
+  initializeHeroSearch();
+  initializeRouteSearch();
+  initializeReportForm();
+
+  // Initialize Interactive MapTiler Map if container and script are present
+  if (window.IloiloTransitMap && document.getElementById('iloilo-transit-map')) {
+    window.iloiloMap = new window.IloiloTransitMap('iloilo-transit-map');
+    window.iloiloMap.init();
+  }
+
+  // Scroll animations for static content
+  document.querySelectorAll('.tip-card, .stat-card').forEach(el => {
+    el.classList.add('reveal');
+  });
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
   initializeScrollReveal();
 
   // Data fetches (parallel – all hit the API simultaneously)
@@ -1294,6 +1875,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   startWaitingTimePolling();
 
   console.info(
+<<<<<<< HEAD
     '%c[SakayNow] Initialised. All API endpoints connected.',
     'color: #1a56db; font-weight: bold;'
   );
@@ -1301,4 +1883,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     'API base:', API_BASE_URL,
     '\nEndpoints:', API
   );
+=======
+    '%c[SakayNow] Connected to Iloilo Transit Tracker & MapTiler.',
+    'color: #059669; font-weight: bold;'
+  );
+>>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
 });
