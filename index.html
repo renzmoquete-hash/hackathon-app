@@ -105,21 +105,21 @@
 
         <!-- Hero statistics -->
         <div id="hero-stats" class="hero__stats" aria-label="Transport waiting time statistics">
-          <div class="stat-card" data-stat="avg-daily-wait">
-            <span class="stat-card__value">45 min</span>
-            <span class="stat-card__label">Avg. daily wait</span>
+          <div class="stat-card" data-stat="total_routes">
+            <span class="stat-card__value">12</span>
+            <span class="stat-card__label">Active Routes</span>
           </div>
-          <div class="stat-card" data-stat="daily-commuters">
-            <span class="stat-card__value">12M+</span>
-            <span class="stat-card__label">Daily commuters</span>
+          <div class="stat-card" data-stat="avg_wait_time">
+            <span class="stat-card__value">17.8 min</span>
+            <span class="stat-card__label">Avg. Wait Time</span>
           </div>
-          <div class="stat-card" data-stat="productivity-loss">
-            <span class="stat-card__value">₱3.5B</span>
-            <span class="stat-card__label">Daily productivity loss</span>
+          <div class="stat-card" data-stat="total_reports">
+            <span class="stat-card__value">1</span>
+            <span class="stat-card__label">Reports Filed</span>
           </div>
-          <div class="stat-card" data-stat="peak-wait">
-            <span class="stat-card__value">60 min</span>
-            <span class="stat-card__label">Peak-hour UV Express wait</span>
+          <div class="stat-card" data-stat="delayed_routes">
+            <span class="stat-card__value">6</span>
+            <span class="stat-card__label">Routes Delayed</span>
           </div>
         </div>
       </div>
@@ -424,9 +424,16 @@
               <li>✅ No account required</li>
             </ul>
             <p class="report-section__note">
-              ⚠️ Reports are stored for <strong>demonstration purposes only</strong>.
-              No data is sent to a server.
+              💡 Reports are saved directly to the database to help track live route delays and commuter trends.
             </p>
+
+            <!-- Recent Community Reports Feed -->
+            <div class="recent-reports" id="recent-reports-container" aria-live="polite">
+              <h3 class="recent-reports__title">📢 Recent Community Reports</h3>
+              <div id="recent-reports-list" class="recent-reports__list">
+                <!-- Injected dynamically by renderRecentReports() -->
+              </div>
+            </div>
           </div>
 
           <!-- Right column: form -->
