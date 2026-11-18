@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SakayNow – Check estimated waiting times for jeepneys, buses, UV Express, and trains in the Philippines." />
+  <title>SakayNow – PH Public Transport Wait Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- =========================================================
+       NAVIGATION BAR
+       ========================================================= -->
+  <header id="main-navbar" class="navbar" role="banner">
+    <div class="navbar__container">
+
+      <a id="nav-logo" class="navbar__logo" href="#hero-section" aria-label="SakayNow – go to homepage">
+        <span class="navbar__logo-icon" aria-hidden="true">🚌</span>
+        <span class="navbar__logo-text">Sakay<span class="navbar__logo-accent">Now</span></span>
+      </a>
+
+      <nav id="nav-links" class="navbar__links" aria-label="Main navigation">
+        <a id="nav-home"           class="navbar__link" href="#hero-section">Home</a>
+        <a id="nav-waiting-times"  class="navbar__link" href="#waiting-time-section">Wait Times</a>
+        <a id="nav-routes"         class="navbar__link" href="#route-search-section">Routes</a>
+        <a id="nav-commuter-tips"  class="navbar__link" href="#commuter-tips-section">Tips</a>
+        <a id="nav-report"         class="navbar__link" href="#report-section">Report</a>
+      </nav>
+
+      <button
+        id="mobile-menu-toggle"
+        class="navbar__hamburger"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="nav-links"
+        type="button"
+      >
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+      </button>
+
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- =========================================================
+         HERO / LANDING SECTION
+         ========================================================= -->
+    <section id="hero-section" class="hero" aria-labelledby="hero-title">
+      <div class="hero__bg" aria-hidden="true">
+        <div class="hero__bg-blob hero__bg-blob--1"></div>
+        <div class="hero__bg-blob hero__bg-blob--2"></div>
+        <div class="hero__bg-blob hero__bg-blob--3"></div>
+      </div>
+
+      <div class="hero__content">
+        <div class="hero__eyebrow">🇵🇭 Built for Filipino Commuters</div>
+
+        <h1 id="hero-title" class="hero__title">
+          Stop Guessing.<br/>Start <span class="hero__title-accent">Commuting Smarter.</span>
+        </h1>
+
+        <p id="hero-description" class="hero__description">
+          Millions of Filipinos lose hours every day waiting for jeepneys, buses, and UV Express —
+          with no idea when the next ride will come. SakayNow gives you estimated wait times and
+          commuter-sourced insights so you can plan your trip with confidence.
+        </p>
+
+        <form
+          id="hero-search-form"
+          class="hero__search"
+          role="search"
+          aria-label="Search routes and transport"
+          novalidate
+        >
+          <label for="hero-search-input" class="sr-only">Search route, location, or transport type</label>
+          <span class="hero__search-icon" aria-hidden="true">🔍</span>
+          <input
+            type="search"
+            id="hero-search-input"
+            class="hero__search-input"
+            name="search_query"
+            placeholder="Search route, location, or transport…"
+            autocomplete="off"
+            aria-label="Search route, location, or transport"
+          />
+          <button
+            type="submit"
+            id="hero-search-button"
+            class="hero__search-btn btn btn--primary"
+            aria-label="Submit search"
+          >
+            Search
+          </button>
+        </form>
+
+        <p class="hero__demo-notice" role="note">
+          ⚠️ <strong>Demo data only</strong> — SakayNow does not provide live GPS tracking or real-time transit data.
+        </p>
+
+        <!-- Hero statistics -->
+        <div id="hero-stats" class="hero__stats" aria-label="Transport waiting time statistics">
+          <div class="stat-card" data-stat="avg-daily-wait">
+            <span class="stat-card__value">45 min</span>
+            <span class="stat-card__label">Avg. daily wait</span>
+          </div>
+          <div class="stat-card" data-stat="daily-commuters">
+            <span class="stat-card__value">12M+</span>
+            <span class="stat-card__label">Daily commuters</span>
+          </div>
+          <div class="stat-card" data-stat="productivity-loss">
+            <span class="stat-card__value">₱3.5B</span>
+            <span class="stat-card__label">Daily productivity loss</span>
+          </div>
+          <div class="stat-card" data-stat="peak-wait">
+            <span class="stat-card__value">60 min</span>
+            <span class="stat-card__label">Peak-hour UV Express wait</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         WAITING-TIME DASHBOARD
+         ========================================================= -->
+    <section
+      id="waiting-time-section"
+      class="waiting-section section"
+      aria-labelledby="waiting-time-heading"
+    >
+      <div class="section__container">
+
+        <div class="waiting-section__header">
+          <div class="section__tag">Live Dashboard</div>
+          <h2 id="waiting-time-heading" class="section__title">Estimated Waiting Times</h2>
+          <p class="section__description">
+            Browse estimated waiting times by transport type. All data is simulated for demonstration purposes.
+          </p>
+          <p
+            id="waiting-time-updated"
+            class="waiting-section__updated"
+            aria-live="polite"
+            data-field="last-refresh"
+          >
+            🕐 Demo data — not updated in real time
+          </p>
+        </div>
+
+        <!-- Filter bar -->
+        <div class="waiting-section__filters" role="group" aria-label="Filter by transport type">
+          <button
+            id="waiting-filter-all"
+            class="filter-btn filter-btn--active"
+            data-filter="all"
+            type="button"
+            aria-pressed="true"
+          >All</button>
+          <button
+            id="waiting-filter-jeepney"
+            class="filter-btn"
+            data-filter="jeepney"
+            type="button"
+            aria-pressed="false"
+          >🚌 Jeepney</button>
+          <button
+            id="waiting-filter-bus"
+            class="filter-btn"
+            data-filter="bus"
+            type="button"
+            aria-pressed="false"
+          >🚍 Bus</button>
+          <button
+            id="waiting-filter-uv"
+            class="filter-btn"
+            data-filter="uv"
+            type="button"
+            aria-pressed="false"
+          >🚐 UV Express</button>
+          <button
+            id="waiting-filter-train"
+            class="filter-btn"
+            data-filter="train"
+            type="button"
+            aria-pressed="false"
+          >🚇 Train</button>
+        </div>
+
+        <!-- Cards container — rendered by JavaScript -->
+        <div
+          id="waiting-time-container"
+          class="waiting-grid"
+          aria-live="polite"
+          aria-label="Transport waiting time cards"
+        >
+          <!-- Waiting cards injected by renderWaitingCards() in script.js -->
+        </div>
+
+        <!-- Empty state -->
+        <div id="waiting-empty-state" class="empty-state hidden" role="status">
+          <span class="empty-state__icon" aria-hidden="true">🔍</span>
+          <p class="empty-state__text">No results match your filter. Try a different transport type.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         ROUTE SEARCH SECTION
+         ========================================================= -->
+    <section
+      id="route-search-section"
+      class="route-search section section--alt"
+      aria-labelledby="route-search-heading"
+    >
+      <div class="section__container">
+
+        <div class="section__header">
+          <div class="section__tag">Route Finder</div>
+          <h2 id="route-search-heading" class="section__title">Find Your Route</h2>
+          <p class="section__description">
+            Enter your origin and destination to see available transport options and estimated fares.
+            <strong>Demo results only.</strong>
+          </p>
+        </div>
+
+        <div class="route-search__layout">
+
+          <form
+            id="route-search-form"
+            class="route-search__form"
+            novalidate
+            aria-label="Route search form"
+          >
+            <div class="form-group route-search__field">
+              <label class="form-group__label" for="route-origin">From</label>
+              <input
+                type="text"
+                id="route-origin"
+                class="form-group__input"
+                name="origin"
+                placeholder="e.g. Iloilo City Proper"
+                autocomplete="off"
+                required
+                aria-required="true"
+                aria-describedby="route-origin-error"
+              />
+              <span id="route-origin-error" class="form-group__error" role="alert"></span>
+            </div>
+
+            <div class="form-group route-search__field">
+              <label class="form-group__label" for="route-destination">To</label>
+              <input
+                type="text"
+                id="route-destination"
+                class="form-group__input"
+                name="destination"
+                placeholder="e.g. Jaro, Iloilo"
+                autocomplete="off"
+                required
+                aria-required="true"
+                aria-describedby="route-destination-error"
+              />
+              <span id="route-destination-error" class="form-group__error" role="alert"></span>
+            </div>
+
+            <div class="form-group route-search__field">
+              <label class="form-group__label" for="route-transport-type">Transportation Type</label>
+              <select
+                id="route-transport-type"
+                class="form-group__select"
+                name="transport_type"
+                aria-label="Select transportation type"
+              >
+                <option value="all">All transport types</option>
+                <option value="jeepney">Jeepney</option>
+                <option value="bus">Bus</option>
+                <option value="uv">UV Express</option>
+                <option value="train">Train</option>
+              </select>
+            </div>
+
+            <button
+              type="submit"
+              id="route-search-submit"
+              class="btn btn--primary btn--wide"
+              aria-label="Find route"
+            >
+              Find Route
+            </button>
+          </form>
+
+          <!-- Results area -->
+          <div class="route-search__results-wrapper">
+            <div
+              id="route-search-results"
+              class="route-search__results"
+              aria-live="polite"
+              aria-label="Route search results"
+            >
+              <!-- Route result cards injected by initializeRouteSearch() -->
+            </div>
+
+            <div id="route-search-empty" class="empty-state hidden" role="status">
+              <span class="empty-state__icon" aria-hidden="true">🗺️</span>
+              <p class="empty-state__text">No routes found for your search. Try different locations.</p>
+            </div>
+
+            <div id="route-search-loading" class="loading-state hidden" aria-live="polite">
+              <div class="loading-state__spinner" aria-hidden="true"></div>
+              <p>Searching routes…</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         COMMUTER TIPS SECTION
+         ========================================================= -->
+    <section
+      id="commuter-tips-section"
+      class="commuter-tips section"
+      aria-labelledby="commuter-tips-heading"
+    >
+      <div class="section__container">
+
+        <div class="section__header">
+          <div class="section__tag">Commuter Tips</div>
+          <h2 id="commuter-tips-heading" class="section__title">Beat the Wait</h2>
+          <p class="section__description">
+            Practical advice from experienced Filipino commuters to help you survive long waiting times.
+          </p>
+        </div>
+
+        <div id="commuter-tips-container" class="commuter-tips__grid">
+
+          <article class="tip-card" data-tip-id="tip-01">
+            <div class="tip-card__icon" aria-hidden="true">⏰</div>
+            <h3 class="tip-card__title">Travel Off-Peak</h3>
+            <p class="tip-card__description">
+              Leave before 6:30 AM or after 8 PM to avoid the worst rush-hour queues.
+              Waiting times can drop by up to 60% outside peak hours.
+            </p>
+          </article>
+
+          <article class="tip-card" data-tip-id="tip-02">
+            <div class="tip-card__icon" aria-hidden="true">🗺️</div>
+            <h3 class="tip-card__title">Plan Alternative Routes</h3>
+            <p class="tip-card__description">
+              Two shorter connecting rides can sometimes get you there faster than waiting
+              for one direct route that runs infrequently.
+            </p>
+          </article>
+
+          <article class="tip-card" data-tip-id="tip-03">
+            <div class="tip-card__icon" aria-hidden="true">📍</div>
+            <h3 class="tip-card__title">Know Your Terminal Locations</h3>
+            <p class="tip-card__description">
+              Boarding at the starting terminal of a route guarantees a seat and usually means
+              shorter waits compared to mid-route stops.
+            </p>
+          </article>
+
+          <article class="tip-card" data-tip-id="tip-04">
+            <div class="tip-card__icon" aria-hidden="true">💰</div>
+            <h3 class="tip-card__title">Prepare Exact Fare</h3>
+            <p class="tip-card__description">
+              Having exact change ready speeds up boarding and reduces hold-ups.
+              Keep a loaded Beep card for rail services to skip ticket queues.
+            </p>
+          </article>
+
+          <article class="tip-card" data-tip-id="tip-05">
+            <div class="tip-card__icon" aria-hidden="true">🛡️</div>
+            <h3 class="tip-card__title">Stay Safe While Waiting</h3>
+            <p class="tip-card__description">
+              Wait in well-lit, populated areas. Keep valuables secured and stay alert
+              to your surroundings, especially during early mornings and late nights.
+            </p>
+          </article>
+
+          <article class="tip-card" data-tip-id="tip-06">
+            <div class="tip-card__icon" aria-hidden="true">📡</div>
+            <h3 class="tip-card__title">Check Conditions Before Leaving</h3>
+            <p class="tip-card__description">
+              Join local commuter Telegram and Facebook groups. Fellow commuters post real-time
+              conditions faster than any official source.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         REPORT LONG WAITING TIMES
+         ========================================================= -->
+    <section
+      id="report-section"
+      class="report-section section section--alt"
+      aria-labelledby="report-heading"
+    >
+      <div class="section__container">
+        <div class="report-section__layout">
+
+          <!-- Left column: explanation -->
+          <div class="report-section__info">
+            <div class="section__tag">Report a Problem</div>
+            <h2 id="report-heading" class="section__title">Experiencing a Long Wait?</h2>
+            <p class="report-section__info-text">
+              Help other commuters by reporting unusually long waiting times.
+              Your report contributes to better transport data advocacy across the Philippines.
+            </p>
+            <ul class="report-section__benefits" aria-label="Benefits of reporting">
+              <li>✅ Helps other commuters plan better</li>
+              <li>✅ Contributes to transport advocacy</li>
+              <li>✅ All submissions are anonymous</li>
+              <li>✅ No account required</li>
+            </ul>
+            <p class="report-section__note">
+              ⚠️ Reports are stored for <strong>demonstration purposes only</strong>.
+              No data is sent to a server.
+            </p>
+          </div>
+
+          <!-- Right column: form -->
+          <div class="report-section__form-wrap">
+            <form
+              id="report-form"
+              class="report-form"
+              novalidate
+              aria-label="Report long waiting time form"
+            >
+
+              <div class="report-form__group">
+                <label class="report-form__label" for="report-name">
+                  Name <span class="report-form__optional">(optional)</span>
+                </label>
+                <input
+                  type="text"
+                  id="report-name"
+                  class="report-form__input"
+                  name="commuter_name"
+                  placeholder="Your name or leave blank"
+                  autocomplete="name"
+                />
+              </div>
+
+              <div class="report-form__group">
+                <label class="report-form__label" for="report-transport-type">
+                  Transport Type <span class="report-form__required" aria-hidden="true">*</span>
+                </label>
+                <select
+                  id="report-transport-type"
+                  class="report-form__input report-form__select"
+                  name="transport_type"
+                  required
+                  aria-required="true"
+                  aria-describedby="report-transport-type-error"
+                >
+                  <option value="">Select transport type…</option>
+                  <option value="jeepney">Jeepney</option>
+                  <option value="bus">Bus</option>
+                  <option value="uv">UV Express</option>
+                  <option value="train">Train (LRT / MRT)</option>
+                  <option value="tricycle">Tricycle</option>
+                  <option value="other">Other</option>
+                </select>
+                <span id="report-transport-type-error" class="report-form__error" role="alert"></span>
+              </div>
+
+              <div class="report-form__group">
+                <label class="report-form__label" for="report-route">
+                  Route <span class="report-form__required" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="report-route"
+                  class="report-form__input"
+                  name="route_name"
+                  placeholder="e.g. City Proper – Jaro"
+                  required
+                  aria-required="true"
+                  aria-describedby="report-route-error"
+                />
+                <span id="report-route-error" class="report-form__error" role="alert"></span>
+              </div>
+
+              <div class="report-form__group">
+                <label class="report-form__label" for="report-location">
+                  Location / Stop <span class="report-form__required" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="report-location"
+                  class="report-form__input"
+                  name="location"
+                  placeholder="e.g. Jaro Terminal, Iloilo"
+                  required
+                  aria-required="true"
+                  aria-describedby="report-location-error"
+                />
+                <span id="report-location-error" class="report-form__error" role="alert"></span>
+              </div>
+
+              <div class="report-form__group">
+                <label class="report-form__label" for="report-waiting-minutes">
+                  Waiting Time (minutes) <span class="report-form__required" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="number"
+                  id="report-waiting-minutes"
+                  class="report-form__input"
+                  name="waiting_minutes"
+                  placeholder="e.g. 45"
+                  min="1"
+                  max="300"
+                  required
+                  aria-required="true"
+                  aria-describedby="report-waiting-minutes-error"
+                />
+                <span id="report-waiting-minutes-error" class="report-form__error" role="alert"></span>
+              </div>
+
+              <div class="report-form__group">
+                <label class="report-form__label" for="report-description">
+                  Additional Information <span class="report-form__optional">(optional)</span>
+                </label>
+                <textarea
+                  id="report-description"
+                  class="report-form__textarea"
+                  name="report_description"
+                  rows="4"
+                  placeholder="Describe the situation — overcrowding, no vehicles, weather, etc."
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                id="report-submit"
+                class="btn btn--primary btn--wide"
+                aria-label="Submit waiting time report"
+              >
+                Submit Report
+              </button>
+
+              <div
+                id="report-success-message"
+                class="report-form__status report-form__status--success"
+                role="status"
+                aria-live="polite"
+                hidden
+              ></div>
+
+              <div
+                id="report-error-message"
+                class="report-form__status report-form__status--error"
+                role="alert"
+                aria-live="assertive"
+                hidden
+              ></div>
+
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+  <footer id="main-footer" class="footer" role="contentinfo">
+    <div class="footer__content">
+
+      <div class="footer__brand">
+        <a id="footer-logo" class="footer__logo" href="#hero-section" aria-label="SakayNow – back to top">
+          <span class="footer__logo-icon" aria-hidden="true">🚌</span>
+          <span class="footer__logo-text">Sakay<span class="footer__logo-accent">Now</span></span>
+        </a>
+        <p id="footer-about" class="footer__about">
+          A hackathon project addressing the problem of long waiting times in Philippine
+          public transportation. Built to help commuters plan smarter.
+        </p>
+        <p class="footer__demo-badge">⚠️ Demo project — all data is simulated</p>
+      </div>
+
+      <nav id="footer-links" class="footer__links" aria-label="Footer navigation">
+        <h3 class="footer__links-heading">Navigate</h3>
+        <a class="footer__link" href="#hero-section">Home</a>
+        <a class="footer__link" href="#waiting-time-section">Wait Times</a>
+        <a class="footer__link" href="#route-search-section">Route Finder</a>
+        <a class="footer__link" href="#commuter-tips-section">Commuter Tips</a>
+        <a class="footer__link" href="#report-section">Report a Problem</a>
+      </nav>
+
+      <div class="footer__transport">
+        <h3 class="footer__links-heading">Transport Types</h3>
+        <span class="footer__transport-tag">🚌 Jeepney</span>
+        <span class="footer__transport-tag">🚍 Bus</span>
+        <span class="footer__transport-tag">🚐 UV Express</span>
+        <span class="footer__transport-tag">🚇 LRT / MRT</span>
+        <span class="footer__transport-tag">🛺 Tricycle</span>
+      </div>
+
+    </div>
+
+    <div class="footer__bottom">
+      <p id="footer-copyright" class="footer__copyright">
+        © 2024 SakayNow Hackathon Team · For educational and demonstration purposes only.
+        Not affiliated with LTFRB, DOTC, or any government agency.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Back to top button -->
+  <button
+    id="back-to-top-btn"
+    class="back-to-top"
+    type="button"
+    aria-label="Scroll back to top"
+    hidden
+  >↑</button>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
