@@ -1,0 +1,15 @@
+# API .htaccess
+Options -Indexes
+
+RewriteEngine On
+
+# Allow direct access to PHP files
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Clean URLs (optional): /api/waiting-times → /api/waiting-times.php
+RewriteRule ^waiting-times$    waiting-times.php [L,QSA]
+RewriteRule ^routes$           routes.php        [L,QSA]
+RewriteRule ^reports$          reports.php        [L,QSA]
+RewriteRule ^stats$            stats.php          [L,QSA]
+RewriteRule ^search$           search.php         [L,QSA]

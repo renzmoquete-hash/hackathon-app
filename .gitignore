@@ -1,0 +1,16 @@
+# Backend - Sensitive files
+config/config.php.local
+*.env
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
