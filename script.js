@@ -2,47 +2,8 @@
  * SakayNow – script.js
  * Front-End Developer & Backend Integration
  *
-<<<<<<< HEAD
- * ─── Backend Integration Notes ───────────────────────────────────────────────
- * All five API endpoints are now connected.
- * The app always tries the real API first. If the request fails (e.g. the PHP
- * server is not running), it falls back to local demo data transparently so the
- * UI never breaks during development.
- *
- * API endpoints consumed:
- *   GET  /api/waiting-times.php        → #waiting-time-container cards
- *   GET  /api/routes.php               → #route-search-results cards
- *   GET  /api/search.php?q=            → hero search → scrolls to dashboard
- *   GET  /api/stats.php                → #hero-stats .stat-card values
- *   POST /api/reports.php              → #report-form submission
- *
- * To switch between local XAMPP and production, change API_BASE_URL below.
- * ─────────────────────────────────────────────────────────────────────────────
- *
- * Organisation:
- *  1.  Configuration
- *  2.  Demo / Fallback Data
- *  3.  Utility Helpers
- *  4.  API Layer  (all fetch calls live here)
- *  5.  initializeNavigation()
- *  6.  initializeHeroSearch()
- *  7.  renderWaitingCards()
- *  8.  initializeWaitingFilters()
- *  9.  startWaitingTimePolling()
- * 10.  renderRouteResults()
- * 11.  initializeRouteSearch()
- * 12.  renderHeroStats()
- * 13.  initializeReportForm()
- * 14.  initializeSmoothScrolling()
- * 15.  initializeScrollSpy()
- * 16.  initializeBackToTop()
- * 17.  initializeScrollReveal()
- * 18.  showToast()
- * 19.  DOMContentLoaded – bootstrap
-=======
  * Connected to Iloilo Transit PHP API + MapTiler Engine.
  * Features automatic live backend API fetching with local offline fallback.
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
  */
 
 'use strict';
@@ -53,26 +14,6 @@ const API_BASE = (window.location.origin.includes('localhost') || window.locatio
   : '/api';
 
 /* =============================================================
-<<<<<<< HEAD
-   1. CONFIGURATION
-   ─────────────────────────────────────────────────────────────
-   Change API_BASE_URL to match the environment.
-   For XAMPP:      'http://localhost/hackathon-app/api'
-   For production: 'https://your-domain.com/api'
-   ============================================================= */
-
-function getApiBaseUrl() {
-  if (typeof window !== 'undefined') {
-    if (window.location.protocol === 'file:') {
-      return 'http://localhost/hackathon-app/api';
-    }
-    if ((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port && window.location.port !== '80') {
-      return `http://${window.location.hostname}/hackathon-app/api`;
-    }
-  }
-  return '/hackathon-app/api';
-}
-=======
    1. ILOILO TRANSIT DATASET (Live Cache & Offline Fallback)
    ============================================================= */
 
@@ -92,7 +33,6 @@ function getApiBaseUrl() {
  * @property {string}  capacity            - Current load description
  * @property {boolean} is_demo             - Flag
  */
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
 
 const API_BASE_URL = getApiBaseUrl();
 
@@ -130,54 +70,6 @@ const demoWaitingData = [
     status: "delayed",
     passenger_count: 25,
     last_updated: "Just now",
-<<<<<<< HEAD
-    is_demo: true
-  },
-  {
-    id: 2,
-    route_id: "route-002",
-    transport_type: "bus",
-    transport_label: "Bus",
-    transport_icon: "🚍",
-    route_name: "City Proper – Airport",
-    origin: "Iloilo City Proper",
-    destination: "Iloilo International Airport",
-    estimated_wait_minutes: 10,
-    status: "normal",
-    passenger_count: 10,
-    last_updated: "2 minutes ago",
-    is_demo: true
-  },
-  {
-    id: 3,
-    route_id: "route-003",
-    transport_type: "uv",
-    transport_label: "UV Express",
-    transport_icon: "🚐",
-    route_name: "EDSA Cubao – BGC",
-    origin: "EDSA Cubao, Quezon City",
-    destination: "Bonifacio Global City, Taguig",
-    estimated_wait_minutes: 45,
-    status: "delayed",
-    passenger_count: 30,
-    last_updated: "5 minutes ago",
-    is_demo: true
-  },
-  {
-    id: 4,
-    route_id: "route-004",
-    transport_type: "train",
-    transport_label: "LRT-1",
-    transport_icon: "🚇",
-    route_name: "Roosevelt – Baclaran",
-    origin: "Roosevelt Station, QC",
-    destination: "Baclaran Station, Pasay",
-    estimated_wait_minutes: 6,
-    status: "normal",
-    passenger_count: 50,
-    last_updated: "1 minute ago",
-    is_demo: true
-=======
     frequency: "Every 6–8 mins",
     capacity: "Full",
     is_demo: false
@@ -271,7 +163,6 @@ const demoWaitingData = [
     frequency: "Every 5 mins",
     capacity: "Available",
     is_demo: false
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
   },
   {
     id: 5,
@@ -421,28 +312,6 @@ let currentWaitingData = [...demoWaitingData];
    ============================================================= */
 
 /**
-<<<<<<< HEAD
- * Maps a transport_type slug to its display emoji.
- * Used as a fallback when transport_icon is missing from the API response.
- * @param {string} type
- * @returns {string}
- */
-function transportEmoji(type) {
-  const map = { jeepney: '🚌', bus: '🚍', uv: '🚐', train: '🚇', tricycle: '🛺', other: '🚗' };
-  return map[type] ?? '🚗';
-}
-
-/**
- * Returns a CSS modifier class based on status string.
- * Handles both "very-delayed" (backend) and "delayed" (front-end).
- * @param {string} status
- * @returns {string}
- */
-function statusModifier(status) {
-  if (status === 'normal')   return 'normal';
-  if (status === 'moderate') return 'moderate';
-  return 'delayed'; // covers "delayed" and "very-delayed"
-=======
  * Returns a CSS status modifier string based on wait minutes.
  * @param {number} minutes
  * @returns {"normal" | "moderate" | "delayed"}
@@ -451,7 +320,6 @@ function getStatusFromMinutes(minutes) {
   if (minutes <= 10) return "normal";
   if (minutes <= 20) return "moderate";
   return "delayed";
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
 }
 
 /**
@@ -459,11 +327,6 @@ function getStatusFromMinutes(minutes) {
  * @param {string} status
  * @returns {string}
  */
-<<<<<<< HEAD
-function statusLabel(status) {
-  const map = { normal: 'Normal', moderate: 'Some Delay', delayed: 'Long Wait', 'very-delayed': 'Very Long Wait' };
-  return map[status] ?? 'Unknown';
-=======
 function getStatusLabel(status) {
   const labels = {
     normal: "Normal",
@@ -472,7 +335,6 @@ function getStatusLabel(status) {
     "very-delayed": "Critical Delay"
   };
   return labels[status] || "Moderate";
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
 }
 
 /**
@@ -536,14 +398,7 @@ function showToast(message) {
 }
 
 /**
-<<<<<<< HEAD
- * Sets or clears a validation error on a form field.
- * @param {string} fieldId
- * @param {string} errorId
- * @param {string} message  - Empty string to clear.
-=======
  * Sets or clears an error on a form field.
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
  */
 function setFieldError(fieldId, errorId, message) {
   const field = document.getElementById(fieldId);
@@ -803,14 +658,8 @@ function initializeNavigation() {
    #waiting-time-container and scrolls the user down.
    ============================================================= */
 function initializeHeroSearch() {
-<<<<<<< HEAD
-  const form   = document.getElementById('hero-search-form');
-  const input  = document.getElementById('hero-search-input');
-  const target = document.getElementById('waiting-time-section');
-=======
   const form  = document.getElementById('hero-search-form');
   const input = document.getElementById('hero-search-input');
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
   if (!form || !input) return;
 
   form.addEventListener('submit', async (e) => {
@@ -818,20 +667,11 @@ function initializeHeroSearch() {
     const query = input.value.trim();
     if (!query) return;
 
-<<<<<<< HEAD
-    // Scroll to dashboard
-    if (target) {
-      const offset = target.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top: offset, behavior: 'smooth' });
-    }
-
-=======
     const waitSection = document.getElementById('waiting-time-section');
     if (waitSection) {
       waitSection.scrollIntoView({ behavior: 'smooth' });
     }
     renderWaitingCards(query, 'all');
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
     showToast(`Searching for "${query}"…`);
 
     // Fetch from unified search endpoint
@@ -845,24 +685,6 @@ function initializeHeroSearch() {
 }
 
 /* =============================================================
-<<<<<<< HEAD
-   7. RENDER WAITING CARDS
-   ─────────────────────────────────────────────────────────────
-   Accepts data from both /api/waiting-times.php and
-   /api/search.php (field names overlap intentionally).
-   ============================================================= */
-
-/** Tracks current filter / search state for polling re-renders. */
-const _dashState = { filter: 'all', query: '' };
-
-/**
- * Renders waiting-time cards into #waiting-time-container.
- * Works with live API data AND demo fallback data.
- * @param {Array}  [data]   - Array from API or demo. Defaults to fetch.
- * @param {string} [query]  - Optional highlight/filter text.
- */
-function renderWaitingCards(data, query = _dashState.query) {
-=======
    5. RENDER WAITING CARDS (Live & Offline Sync)
    ============================================================= */
 let _activeFilter  = 'all';
@@ -907,15 +729,11 @@ function renderWaitingCards(query = _activeQuery, filter = _activeFilter, data =
   _activeQuery  = query;
   _activeFilter = filter;
 
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
   const container  = document.getElementById('waiting-time-container');
   const emptyState = document.getElementById('waiting-empty-state');
   const updatedEl  = document.getElementById('waiting-time-updated');
   if (!container) return;
 
-<<<<<<< HEAD
-  if (!data || data.length === 0) {
-=======
   const q = query.toLowerCase().trim();
 
   const filtered = data.filter(entry => {
@@ -929,7 +747,6 @@ function renderWaitingCards(query = _activeQuery, filter = _activeFilter, data =
   });
 
   if (filtered.length === 0) {
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
     container.innerHTML = '';
     if (emptyState) emptyState.classList.remove('hidden');
     return;
@@ -955,22 +772,12 @@ function renderWaitingCards(query = _activeQuery, filter = _activeFilter, data =
         class="waiting-card reveal"
         id="waiting-card-${routeId}"
         data-transport-type="${entry.transport_type}"
-<<<<<<< HEAD
-        data-route-id="${routeId}"
-        data-status="${mod}"
-        data-waiting-minutes="${waitMin}"
-        data-is-demo="${isDemo}"
-        style="animation-delay: ${index * 55}ms"
-        role="article"
-        aria-label="${typeLabel} – ${entry.route_name} – estimated wait: ${waitMin} minutes"
-=======
         data-route-id="${entry.id}"
         data-status="${status}"
         data-waiting-minutes="${entry.estimated_wait_minutes}"
         data-is-demo="${entry.is_demo}"
         style="animation-delay: ${index * 45}ms"
         aria-label="${entry.transport_label} – ${entry.route_name} – ${entry.estimated_wait_minutes} minute wait"
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
       >
         <div class="waiting-card__header">
           <div class="waiting-card__title-group">
@@ -992,29 +799,15 @@ function renderWaitingCards(query = _activeQuery, filter = _activeFilter, data =
         </p>
 
         <div class="waiting-card__time">
-<<<<<<< HEAD
-          <span class="waiting-card__time-value" data-field="estimated-wait">${waitMin}</span>
-          <div>
-            <span class="waiting-card__time-unit">min wait</span><br/>
-            <span class="waiting-card__time-label">(estimated)</span>
-=======
           <div class="waiting-card__time-number">
             <span class="waiting-card__time-value" data-field="estimated-wait">
               ${entry.estimated_wait_minutes}
             </span>
             <span class="waiting-card__time-unit">mins</span>
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
           </div>
           <span class="waiting-card__time-caption">estimated wait time</span>
         </div>
 
-<<<<<<< HEAD
-        <div class="waiting-card__bar" role="img" aria-label="Wait level: ${barWidth}%">
-          <div
-            class="waiting-card__bar-fill waiting-card__bar-fill--${mod}"
-            data-target="${barWidth}"
-            style="width: 0%"
-=======
         <div
           class="waiting-card__bar-wrap"
           role="progressbar"
@@ -1026,36 +819,10 @@ function renderWaitingCards(query = _activeQuery, filter = _activeFilter, data =
           <div
             class="waiting-card__bar-fill waiting-card__bar-fill--${status}"
             style="width: ${barWidth}%"
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
           ></div>
         </div>
 
         <div class="waiting-card__details">
-<<<<<<< HEAD
-          ${entry.passenger_count != null ? `
-          <div class="waiting-card__detail-row">
-            <span>Passengers waiting</span>
-            <strong data-field="passenger-count">${entry.passenger_count}</strong>
-          </div>` : ''}
-          ${entry.fare != null ? `
-          <div class="waiting-card__detail-row">
-            <span>Est. fare</span>
-            <strong data-field="fare">₱${parseFloat(entry.fare).toFixed(0)}</strong>
-          </div>` : ''}
-          ${entry.duration_minutes != null ? `
-          <div class="waiting-card__detail-row">
-            <span>Trip duration</span>
-            <strong data-field="duration">~${entry.duration_minutes} min</strong>
-          </div>` : ''}
-        </div>
-
-        <div class="waiting-card__footer">
-          <span class="waiting-card__updated" data-field="last-updated">🕐 ${updated}</span>
-          ${isDemo
-            ? `<span class="waiting-card__demo-tag" aria-label="Simulated demo data">DEMO</span>`
-            : ''}
-        </div>
-=======
           <span class="waiting-card__detail-item">
             <span class="waiting-card__detail-icon" aria-hidden="true">⏱️</span>
             ${entry.frequency || 'Every 5–10 min'}
@@ -1071,55 +838,22 @@ function renderWaitingCards(query = _activeQuery, filter = _activeFilter, data =
             🕐 ${entry.last_updated}
           </span>
         </footer>
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
       </article>
     `;
   }).join('');
 
-<<<<<<< HEAD
-  // Animate progress bars
-  requestAnimationFrame(() => {
-    container.querySelectorAll('.waiting-card__bar-fill').forEach(fill => {
-      requestAnimationFrame(() => {
-        fill.style.width = fill.dataset.target + '%';
-      });
-    });
-  });
-
-  // Update timestamp
-  if (updatedEl) {
-    const now = new Date();
-    const hasDemo = data.some(d => d.is_demo);
-    updatedEl.textContent = hasDemo
-      ? '⚠️ Showing demo data (server unavailable)'
-      : `🕐 Last updated at ${now.toLocaleTimeString('en-PH', { hour: '2-digit', minute: '2-digit' })}`;
-  }
-
-=======
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
   initializeScrollReveal();
 }
 
 /* =============================================================
-<<<<<<< HEAD
-   8. WAITING-TIME FILTERS
-   ─────────────────────────────────────────────────────────────
-   Connected to: GET /api/waiting-times.php?type=<slug>
-=======
    6. WAITING FILTERS
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
    ============================================================= */
 function initializeWaitingFilters() {
   const filterBtns = document.querySelectorAll('.filter-btn[data-filter]');
   if (!filterBtns.length) return;
 
   filterBtns.forEach(btn => {
-<<<<<<< HEAD
-    btn.addEventListener('click', async () => {
-      // Update active state
-=======
     btn.addEventListener('click', () => {
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
       filterBtns.forEach(b => {
         b.classList.remove('filter-btn--active');
         b.setAttribute('aria-pressed', 'false');
@@ -1139,102 +873,6 @@ function initializeWaitingFilters() {
 }
 
 /* =============================================================
-<<<<<<< HEAD
-   9. WAITING-TIME POLLING
-   ─────────────────────────────────────────────────────────────
-   Connected to: GET /api/waiting-times.php
-   Polls every POLL_INTERVAL_MS ms and re-renders with fresh data.
-   ============================================================= */
-function startWaitingTimePolling() {
-  setInterval(async () => {
-    const data = await apiFetchWaitingTimes(_dashState.filter);
-    renderWaitingCards(data);
-  }, POLL_INTERVAL_MS);
-}
-
-/* =============================================================
-   10. RENDER ROUTE RESULTS
-   ─────────────────────────────────────────────────────────────
-   Renders cards from /api/routes.php into #route-search-results.
-   Field names from routes.php:
-     route_id, transport_type, transport_label, transport_icon,
-     route_name, origin, destination, fare, duration_minutes,
-     current_wait_minutes, current_status
-   ============================================================= */
-
-/**
- * Renders route result cards into #route-search-results.
- * @param {Array} routes
- */
-function renderRouteResults(routes) {
-  const resultsEl = document.getElementById('route-search-results');
-  const emptyEl   = document.getElementById('route-search-empty');
-  if (!resultsEl) return;
-
-  if (!routes || routes.length === 0) {
-    resultsEl.innerHTML = '';
-    if (emptyEl) emptyEl.classList.remove('hidden');
-    return;
-  }
-
-  if (emptyEl) emptyEl.classList.add('hidden');
-
-  resultsEl.innerHTML = routes.map((route, index) => {
-    // routes.php uses current_wait_minutes / current_status
-    const waitMin   = route.current_wait_minutes ?? route.estimated_wait_minutes ?? null;
-    const rawStatus = route.current_status ?? route.status ?? (waitMin ? statusFromMinutes(waitMin) : 'normal');
-    const mod       = statusModifier(rawStatus);
-    const label     = statusLabel(rawStatus);
-    const icon      = route.transport_icon ?? transportEmoji(route.transport_type);
-    const fare      = route.fare ? `₱${parseFloat(route.fare).toFixed(0)}` : 'N/A';
-    const isDemo    = route.is_demo ? true : false;
-
-    return `
-      <div
-        class="route-result-card reveal"
-        id="route-result-${route.route_id ?? route.id}"
-        data-transport-type="${route.transport_type}"
-        data-route-id="${route.route_id ?? route.id}"
-        data-is-demo="${isDemo}"
-        style="animation-delay: ${index * 80}ms"
-        role="article"
-        aria-label="${route.transport_label} – ${route.route_name}"
-      >
-        <div class="route-result-card__icon" aria-hidden="true">${icon}</div>
-
-        <div>
-          <h3 class="route-result-card__title">${route.route_name}</h3>
-          <div class="route-result-card__details">
-            <span class="route-result-card__detail-item">🚌 ${route.transport_label}</span>
-            ${route.duration_minutes ? `<span class="route-result-card__detail-item">⏱ ~${route.duration_minutes} min trip</span>` : ''}
-            ${waitMin != null       ? `<span class="route-result-card__detail-item">🕐 ~${waitMin} min wait</span>` : ''}
-            <span class="route-result-card__detail-item">📍 ${route.origin} → ${route.destination}</span>
-            ${isDemo ? `<span class="route-result-card__detail-item" style="color:var(--color-primary);font-weight:600;">DEMO</span>` : ''}
-          </div>
-        </div>
-
-        <div class="route-result-card__meta">
-          <span class="route-result-card__fare">${fare}</span>
-          <span class="route-result-card__duration">est. fare</span>
-          ${waitMin != null ? `
-          <span
-            class="route-result-card__wait-badge waiting-card__status--${mod}"
-            aria-label="Status: ${label}"
-          >${label}</span>` : ''}
-        </div>
-      </div>
-    `;
-  }).join('');
-
-  initializeScrollReveal();
-  showToast(`Found ${routes.length} route${routes.length !== 1 ? 's' : ''}${routes.some(r => r.is_demo) ? ' (demo data)' : ''}.`);
-}
-
-/* =============================================================
-   11. ROUTE SEARCH
-   ─────────────────────────────────────────────────────────────
-   Connected to: GET /api/routes.php?origin=&destination=&type=
-=======
    7. UPDATE WAITING STATUS
    ============================================================= */
 function updateWaitingStatus() {
@@ -1246,7 +884,6 @@ function updateWaitingStatus() {
 
 /* =============================================================
    8. ROUTE SEARCH (Connected to /api/routing.php)
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
    ============================================================= */
 function initializeRouteSearch() {
   const form      = document.getElementById('route-search-form');
@@ -1285,23 +922,11 @@ function initializeRouteSearch() {
 
     if (!valid) return;
 
-<<<<<<< HEAD
-    // Show loading
-    if (resultsEl) resultsEl.innerHTML = '';
-    if (emptyEl)   emptyEl.classList.add('hidden');
-    if (loadingEl) loadingEl.classList.remove('hidden');
-
-    const routes = await apiFetchRoutes({ origin, destination, type });
-
-    if (loadingEl) loadingEl.classList.add('hidden');
-    renderRouteResults(routes);
-=======
     if (resultsEl)  resultsEl.innerHTML = '';
     if (emptyEl)    emptyEl.classList.add('hidden');
     if (loadingEl)  loadingEl.classList.remove('hidden');
 
     performRouteSearch(origin, destination, transport);
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
   });
 
   [
@@ -1310,15 +935,11 @@ function initializeRouteSearch() {
   ].forEach(([id, errId, msg]) => {
     const el = document.getElementById(id);
     if (!el) return;
-<<<<<<< HEAD
-    el.addEventListener('blur',  () => { if (!el.value.trim()) setFieldError(id, errId, msg); });
-=======
     el.addEventListener('blur', () => {
       if (el.value.trim() && el.value.trim().length >= 2) {
         setFieldError(id, errId, '');
       }
     });
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
     el.addEventListener('input', () => setFieldError(id, errId, ''));
   });
 }
@@ -1331,35 +952,6 @@ function initializeRouteSearch() {
    ============================================================= */
 
 /**
-<<<<<<< HEAD
- * Fetches stats and updates the hero stats cards.
- * stat_key → data-stat attribute on each .stat-card.
- */
-async function renderHeroStats() {
-  const statsContainer = document.getElementById('hero-stats');
-  if (!statsContainer) return;
-
-  const stats = await apiFetchStats();
-
-  stats.forEach(stat => {
-    // Match by data-stat attribute if present, otherwise by order
-    const card = statsContainer.querySelector(`.stat-card[data-stat="${stat.stat_key}"]`);
-    if (card) {
-      const valEl   = card.querySelector('.stat-card__value');
-      const labelEl = card.querySelector('.stat-card__label');
-      if (valEl)   valEl.textContent   = stat.stat_value;
-      if (labelEl) labelEl.textContent = stat.stat_label;
-    }
-  });
-}
-
-/* =============================================================
-   13. REPORT FORM
-   ─────────────────────────────────────────────────────────────
-   Connected to: POST /api/reports.php  (JSON body)
-   Handles both backend success (201) and backend validation
-   errors (422) so the UI matches whatever the server returns.
-=======
  * Searches routes using backend routing engine with map integration
  */
 async function performRouteSearch(origin, destination, transport) {
@@ -1481,7 +1073,6 @@ async function performRouteSearch(origin, destination, transport) {
 
 /* =============================================================
    9. REPORT FORM (Live Backend POST)
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
    ============================================================= */
 function initializeReportForm() {
   const form       = document.getElementById('report-form');
@@ -1490,12 +1081,7 @@ function initializeReportForm() {
   const errorMsg   = document.getElementById('report-error-message');
   if (!form) return;
 
-<<<<<<< HEAD
-  // ── Field validation rules ────────────────────────────────────
-  const fieldRules = [
-=======
   const fields = [
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
     {
       id: 'report-transport-type', errId: 'report-transport-type-error',
       validate: v => v ? '' : 'Please select a transport type.'
@@ -1510,19 +1096,11 @@ function initializeReportForm() {
       }
     },
     {
-<<<<<<< HEAD
-      id: 'report-location', errId: 'report-location-error',
-      validate: v => {
-        if (!v.trim())       return 'Please enter the location or stop.';
-        if (v.trim().length < 3) return 'Location must be at least 3 characters.';
-        if (v.trim().length > 200) return 'Location must be under 200 characters.';
-=======
       id:    'report-location',
       errId: 'report-location-error',
       validate: (val) => {
         if (!val.trim()) return 'Please enter the location or stop (e.g. Calumpang).';
         if (val.trim().length < 3) return 'Location must be at least 3 characters.';
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
         return '';
       }
     },
@@ -1538,28 +1116,13 @@ function initializeReportForm() {
     }
   ];
 
-<<<<<<< HEAD
-  // Live blur / input validation
-  fieldRules.forEach(({ id, errId, validate }) => {
-=======
   fields.forEach(({ id, errId, validate }) => {
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
     const el = document.getElementById(id);
     if (!el) return;
     el.addEventListener('blur',  () => setFieldError(id, errId, validate(el.value)));
     el.addEventListener('input', () => setFieldError(id, errId, ''));
   });
 
-<<<<<<< HEAD
-  // ── Submit ────────────────────────────────────────────────────
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    clearFormErrors(form);
-    if (successMsg) successMsg.hidden = true;
-    if (errorMsg)   errorMsg.hidden   = true;
-
-    // Client-side validation
-=======
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     clearFormErrors(form);
@@ -1567,7 +1130,6 @@ function initializeReportForm() {
     if (successMsg) successMsg.hidden = true;
     if (errorMsg)   errorMsg.hidden   = true;
 
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
     let isValid = true;
     fieldRules.forEach(({ id, errId, validate }) => {
       const el  = document.getElementById(id);
@@ -1577,15 +1139,6 @@ function initializeReportForm() {
     });
 
     if (!isValid) {
-<<<<<<< HEAD
-      const first = form.querySelector('.is-invalid');
-      if (first) { first.scrollIntoView({ behavior: 'smooth', block: 'center' }); first.focus(); }
-      return;
-    }
-
-    // Build payload – field names match backend exactly
-    const payload = {
-=======
       const firstInvalid = form.querySelector('.is-invalid');
       if (firstInvalid) {
         firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1595,34 +1148,11 @@ function initializeReportForm() {
     }
 
     const formData = {
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
       commuter_name:      document.getElementById('report-name')?.value.trim() || '',
       transport_type:     document.getElementById('report-transport-type')?.value,
       route_name:         document.getElementById('report-route')?.value.trim(),
       location:           document.getElementById('report-location')?.value.trim(),
       waiting_minutes:    parseInt(document.getElementById('report-waiting-minutes')?.value, 10),
-<<<<<<< HEAD
-      report_description: document.getElementById('report-description')?.value.trim() || '',
-    };
-
-    // Loading state
-    submitBtn.disabled    = true;
-    submitBtn.textContent = 'Submitting…';
-
-    const result = await apiSubmitReport(payload);
-
-    submitBtn.disabled    = false;
-    submitBtn.textContent = 'Submit Report';
-
-    if (result.success) {
-      // ── Success ─────────────────────────────────────────────
-      const reportId = result.data?.report_id ?? null;
-      if (successMsg) {
-        successMsg.innerHTML = `
-          <strong>✅ ${result.message}</strong><br/>
-          ${reportId ? `Report ID: <strong>#${reportId}</strong>` : ''}
-          ${result.is_demo ? '<br/><em>(Demo mode – no server was reached)</em>' : ''}
-=======
       report_description: document.getElementById('report-description')?.value.trim()
     };
 
@@ -1663,48 +1193,11 @@ function initializeReportForm() {
           <strong>✅ Report received (Offline Mode)!</strong><br/>
           Thank you! Your report about a <strong>${formData.waiting_minutes}-minute</strong> wait on
           <strong>${formData.route_name}</strong> at <strong>${formData.location}</strong> has been logged.
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
         `;
         successMsg.hidden = false;
       }
       form.reset();
       clearFormErrors(form);
-<<<<<<< HEAD
-      showToast('✅ Report submitted!');
-
-      // Refresh hero stats, recent reports feed, and live wait cards
-      renderHeroStats();
-      renderRecentReports();
-      apiFetchWaitingTimes(_dashState.filter).then(renderWaitingCards);
-
-      setTimeout(() => {
-        if (successMsg) successMsg.hidden = true;
-      }, 8000);
-
-    } else {
-      // ── Backend validation errors (HTTP 422) ─────────────────
-      if (result.errors && typeof result.errors === 'object') {
-        // Map backend field errors back onto our form fields
-        const backendFieldMap = {
-          transport_type:     ['report-transport-type', 'report-transport-type-error'],
-          route_name:         ['report-route',          'report-route-error'],
-          location:           ['report-location',       'report-location-error'],
-          waiting_minutes:    ['report-waiting-minutes', 'report-waiting-minutes-error'],
-        };
-        Object.entries(result.errors).forEach(([field, msg]) => {
-          const mapping = backendFieldMap[field];
-          if (mapping) setFieldError(mapping[0], mapping[1], msg);
-        });
-      }
-
-      if (errorMsg) {
-        errorMsg.textContent = result.message || 'Submission failed. Please check the form and try again.';
-        errorMsg.hidden = false;
-        errorMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
-
-      showToast('❌ Submission failed – please check the form.');
-=======
       showToast('✅ Report recorded locally.');
     } finally {
       submitBtn.disabled = false;
@@ -1712,17 +1205,12 @@ function initializeReportForm() {
       setTimeout(() => {
         if (successMsg) successMsg.hidden = true;
       }, 9000);
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
     }
   });
 }
 
 /* =============================================================
-<<<<<<< HEAD
-   14. SMOOTH SCROLLING
-=======
    10. SMOOTH SCROLLING
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
    ============================================================= */
 function initializeSmoothScrolling() {
   document.querySelectorAll('a[href^="#"]').forEach(link => {
@@ -1740,11 +1228,7 @@ function initializeSmoothScrolling() {
 }
 
 /* =============================================================
-<<<<<<< HEAD
-   15. SCROLL SPY
-=======
    11. SCROLL SPY
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
    ============================================================= */
 function initializeScrollSpy() {
   const sections  = document.querySelectorAll('section[id]');
@@ -1782,11 +1266,7 @@ function initializeBackToTop() {
 }
 
 /* =============================================================
-<<<<<<< HEAD
-   17. SCROLL REVEAL
-=======
    13. SCROLL REVEAL
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
    ============================================================= */
 function initializeScrollReveal() {
   const revealEls = document.querySelectorAll('.reveal:not(.is-visible)');
@@ -1805,34 +1285,14 @@ function initializeScrollReveal() {
 }
 
 /* =============================================================
-<<<<<<< HEAD
-   18. showToast — defined in Section 3 (Utilities)
-   ============================================================= */
-
-/* =============================================================
-   19. BOOTSTRAP — DOMContentLoaded
-   ============================================================= */
-document.addEventListener('DOMContentLoaded', async () => {
-
-  // Core UI (synchronous, no network needed)
-=======
    14. BOOTSTRAP — DOMContentLoaded
    ============================================================= */
 document.addEventListener('DOMContentLoaded', () => {
   // Core UI
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
   initializeNavigation();
   initializeSmoothScrolling();
   initializeScrollSpy();
   initializeBackToTop();
-<<<<<<< HEAD
-  initializeWaitingFilters();
-  initializeRouteSearch();
-  initializeReportForm();
-
-  // Apply scroll-reveal to static tip & stat cards
-  document.querySelectorAll('.tip-card, .stat-card').forEach(el => el.classList.add('reveal'));
-=======
 
   // Load Iloilo Transit Dashboard Data
   renderWaitingCards();         // Render initial Iloilo cards
@@ -1855,7 +1315,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.tip-card, .stat-card').forEach(el => {
     el.classList.add('reveal');
   });
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
   initializeScrollReveal();
 
   // Data fetches (parallel – all hit the API simultaneously)
@@ -1875,17 +1334,7 @@ document.addEventListener('DOMContentLoaded', () => {
   startWaitingTimePolling();
 
   console.info(
-<<<<<<< HEAD
-    '%c[SakayNow] Initialised. All API endpoints connected.',
-    'color: #1a56db; font-weight: bold;'
-  );
-  console.info(
-    'API base:', API_BASE_URL,
-    '\nEndpoints:', API
-  );
-=======
     '%c[SakayNow] Connected to Iloilo Transit Tracker & MapTiler.',
     'color: #059669; font-weight: bold;'
   );
->>>>>>> 1f0028153acf2afd064ebf2a75b36815503a6be1
 });
